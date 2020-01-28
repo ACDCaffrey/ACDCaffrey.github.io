@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Liverpool Compton Imaging App Overview</title>
+  <title>2.8 Filtering Compton Images | Liverpool Compton Imaging App Overview</title>
   <meta name="description" content="How to use the Compton imaging app at the University of Liverpool." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Liverpool Compton Imaging App Overview" />
+  <meta property="og:title" content="2.8 Filtering Compton Images | Liverpool Compton Imaging App Overview" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Liverpool Compton Imaging App Overview" />
+  <meta name="twitter:title" content="2.8 Filtering Compton Images | Liverpool Compton Imaging App Overview" />
   
   <meta name="twitter:description" content="How to use the Compton imaging app at the University of Liverpool." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="01-about.html"/>
+<link rel="prev" href="09-userFitting.html"/>
+<link rel="next" href="11-userMultipleReconstruction.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -101,19 +101,22 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Liverpool Compton Imaging App Overview</h1>
-<p class="author"><em>Adam Caffrey</em></p>
-<p class="date"><em>2020-01-28</em></p>
-</div>
+<div id="filtering-compton-images" class="section level2">
+<h2><span class="header-section-number">2.8</span> Filtering Compton Images</h2>
+<p>Once a Compton slice has been produced, a filter can be applied to reduce the high or low-frequency components. This can be especially useful to remove blur from an image and acheive a better output without the use of iterative reconstruction codes.</p>
+<p><img src="Images/filtering_screen.png" width="1435" /></p>
+<p>Three filters are currently availble as of version 3.0.2; a high-pass filter, a low pass filter and a butterworth filter. Generally you will want to use a high-pass filter and the cutoff radius should be between 10 and 30.</p>
+<p>If data has been reconstructed then the <em>Unfiltered Slice</em> tab should fill automatically. Click “<em>Filter Slice</em>” to display the filtered slice in its corresponding tab. The profiles from the filtered and unfiltered slices can be displayed once you have chosen which row/column to display from the <em>Profile Settings</em> tab. The selection method is exactely as it was in the <em>Image Reconstruction</em> tab.</p>
+<p>The applied filter will be displayed in the <em>Filter</em> tab once it has been applied. More information on exactly what this shows can be found in the <em>Instructions</em> section of the app. Once you are satisfied with the results you can click “<em>Save Output</em>” to return the filtered and non-filtered slices as vectors to be analysed in your preferred coding language.</p>
 
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="01-about.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="09-userFitting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="11-userMultipleReconstruction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

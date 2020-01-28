@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Liverpool Compton Imaging App Overview</title>
+  <title>2.2 Displaying Energy Spectra | Liverpool Compton Imaging App Overview</title>
   <meta name="description" content="How to use the Compton imaging app at the University of Liverpool." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Liverpool Compton Imaging App Overview" />
+  <meta property="og:title" content="2.2 Displaying Energy Spectra | Liverpool Compton Imaging App Overview" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Liverpool Compton Imaging App Overview" />
+  <meta name="twitter:title" content="2.2 Displaying Energy Spectra | Liverpool Compton Imaging App Overview" />
   
   <meta name="twitter:description" content="How to use the Compton imaging app at the University of Liverpool." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="01-about.html"/>
+<link rel="prev" href="03-userLoadData.html"/>
+<link rel="next" href="05-userEnergyMatrix.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -101,19 +101,31 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Liverpool Compton Imaging App Overview</h1>
-<p class="author"><em>Adam Caffrey</em></p>
-<p class="date"><em>2020-01-28</em></p>
-</div>
+<div id="displaying-energy-spectra" class="section level2">
+<h2><span class="header-section-number">2.2</span> Displaying Energy Spectra</h2>
+<p>An energy spectrum will be plotted upon openning the <em>Energy Spectrum</em> tab, the requirement for this is that a file has been sucessfully loaded into the application. The default energy range displayed is 0-1500 keV, this was chosen to ensure a full Eu-152 energy spectrum could be displayed without further actions. The maximum limit of this range has been set to 8 MeV for ongoing Y-88 work.</p>
+<p><img src="Images/energy_spectrum_screen.png" width="1435" /></p>
+<p>Placing the mouse over the spectrum will indicate the energy at that position. This can be used, along with the range limits, to determine precise photopeak positions. Under the additional setting tab you can change the colour of the spectrum. The allowed inputs for this field can be found <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>. Hex input is also accepted (#01ee32). You can change the y-scale from normal to log mode, and finally you can display subsets of data.</p>
+<p>This options for subsetting the data only appear if the data contains a <em>Tier</em> column. You can choose to display:</p>
+<ul>
+<li>2-tier data only<br />
+</li>
+<li>3-tier data only<br />
+</li>
+<li>Both datasets displayed individually<br />
+</li>
+<li>Both datasets combined and displayed</li>
+</ul>
+<p>To select one of these options you have to double-click the corresponding button.</p>
 
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="01-about.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="03-userLoadData.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="05-userEnergyMatrix.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

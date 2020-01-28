@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Liverpool Compton Imaging App Overview</title>
+  <title>2.7 Fitting Data | Liverpool Compton Imaging App Overview</title>
   <meta name="description" content="How to use the Compton imaging app at the University of Liverpool." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Liverpool Compton Imaging App Overview" />
+  <meta property="og:title" content="2.7 Fitting Data | Liverpool Compton Imaging App Overview" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Liverpool Compton Imaging App Overview" />
+  <meta name="twitter:title" content="2.7 Fitting Data | Liverpool Compton Imaging App Overview" />
   
   <meta name="twitter:description" content="How to use the Compton imaging app at the University of Liverpool." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="01-about.html"/>
+<link rel="prev" href="08-userImageReconstruction.html"/>
+<link rel="next" href="10-userFiltering.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -101,19 +101,35 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Liverpool Compton Imaging App Overview</h1>
-<p class="author"><em>Adam Caffrey</em></p>
-<p class="date"><em>2020-01-28</em></p>
-</div>
+<div id="fitting-data" class="section level2">
+<h2><span class="header-section-number">2.7</span> Fitting Data</h2>
+<p>Once data has been reconstructed from the Image Reconstruction page, this page can be used to fit a distribution to the data and view the Compton image.</p>
+<p><img src="Images/data_fitting_screen.png" width="1435" /></p>
+<p>The page is split into 4 main sections:</p>
+<p><strong>Section 1</strong> - Displaying the Filled Contour Plot</p>
+<p>The 2D Compton slice is viewed by hitting the “<em>Remake Contour Plot</em>” button. Before creation you can select:</p>
+<ul>
+<li>Whether you want to display contour lines on top of this image.<br />
+</li>
+<li>If you want to see a vertical/horizontal line at the row/column of the corresponding image profile.<br />
+</li>
+<li>The colour scheme for the plot.</li>
+</ul>
+<p><strong>Section 2</strong> - FWHM Plot Controls</p>
+<p>This pane primarlily focusses on creating the intensity profile from the Compton image. You can choose to view a profile through the pixel of maximum intensity or manually select a row/column in the image. A “<em>Remake Contour Plot</em>” button also exists on this page to quickly display the image with the row/column representing the profile highlighted. Click the “<em>Remake FWHM Plot</em>” button to display the intensity profile. If the image consists of a single point source then a fit shall be attemped, otherwise a simple black line shall represent the data. The created profile can be saved to the directory chosen from the “<em>Settings</em>” page using the button at the far right. This data cannot be reloaded back into the app but will contain all the necessary information to refit the profile in another language if you wish.</p>
+<p><strong>Section 3</strong> - Manual Fitting</p>
+<p>If the data consists of 2 point sources, or if a distribution representing a single point source could not be fitted, then a manual fit can be attempted on this tab. When you fit a single point source profile, the information used to fit the distribution will be automatically input into the first set of fit parameters on the left of the tab. Once you are happy with the settings click “<em>Refit Data</em>” to attemp a manual fit. It is not always possible to fit the data using the app. In which case, I recommend saving the profile and writing a fitting algorithm in Matlab or python.</p>
+<p><strong>Section 4</strong> - Fit Statistics</p>
+<p>This tab will display the output of the fit (if acheived) and basic information on the image profile. The rightmost panel will display the equation used to fit the data and statistics which are useful to understand the quality of the fit. The information is better explained <a href="https://stats.stackexchange.com/questions/5135/interpretation-of-rs-lm-output">here</a>. This information will also be saved using the “<em>Save FWHM Slice</em>” button from the second tab. This section should be used to note the FWHM of the distribution along with the total number of counts ran and maximum height of the profile.</p>
 
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="01-about.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="08-userImageReconstruction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="10-userFiltering.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Liverpool Compton Imaging App Overview</title>
+  <title>2.6 Reconstructing Data | Liverpool Compton Imaging App Overview</title>
   <meta name="description" content="How to use the Compton imaging app at the University of Liverpool." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Liverpool Compton Imaging App Overview" />
+  <meta property="og:title" content="2.6 Reconstructing Data | Liverpool Compton Imaging App Overview" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Liverpool Compton Imaging App Overview" />
+  <meta name="twitter:title" content="2.6 Reconstructing Data | Liverpool Compton Imaging App Overview" />
   
   <meta name="twitter:description" content="How to use the Compton imaging app at the University of Liverpool." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="01-about.html"/>
+<link rel="prev" href="07-userDepthAbs.html"/>
+<link rel="next" href="09-userFitting.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -101,19 +101,42 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Liverpool Compton Imaging App Overview</h1>
-<p class="author"><em>Adam Caffrey</em></p>
-<p class="date"><em>2020-01-28</em></p>
-</div>
+<div id="reconstructing-data" class="section level2">
+<h2><span class="header-section-number">2.6</span> Reconstructing Data</h2>
+<p>On this tab you can feed the input data to one of the available image reconstruction codes. Currently only the analytical and SOE codes can be selected and their workings are described in the <em>Instructions</em> section of the app.</p>
+<p><img src="Images/image_reconstruction_screen.png" width="1435" /></p>
+<p>The various options which can be set are:</p>
+<ul>
+<li><strong>Image space size</strong>: This is the size of the 2D slice which cones are projected onto. It must be a factor of 200 and the field can be manually typed into or you can hit the arrow keys on your keyboard to jump between allowed values.<br />
+</li>
+<li><strong>Distance of source</strong>: Distance of the source from the front of the scatter detector cryostat in centimeters.<br />
+</li>
+<li><strong>Cryostat separation</strong>: Inner distance between the scatter and absorber cryostats in millimeters.<br />
+</li>
+<li><strong>Points per degree</strong>: Degree of conic sampling. The projected cones cannot be continuous surfaces and so they are discretised into a set number of rays per angular degree of each cone.<br />
+</li>
+<li><strong>Image space compression</strong>: Size of the pixels on the slice. A larger value will produce a clearer image with less data.<br />
+</li>
+<li><strong>Number of iterations</strong>: This option becomes available if you opt to use the SOE code. It sets the number of iterations to be run.<br />
+</li>
+<li><strong>Averaging grid size</strong>: The size of the 2D density grid used by the SOE code. Its function is described in the app’s <em>Instructions</em> section.<br />
+</li>
+<li><strong>Nuber of events to run</strong>: If you select “<em>Run set number of events</em>” then the total number of events in the file will be displayed in a text input field. This value can then be altered to however many events you wish to run. The value indicates the number of events which shall be run <strong>after</strong> energy gates have been applied. An additional option will appear asking whether the events selected should be randomly sampled from the dataset or sequential.<br />
+</li>
+<li><strong>Tiers to reconstruct</strong>: Allows you to reconstruct events which interacted in 2-tiers, 3-tiers or both. This option is only available if a 9th column exists in the data.</li>
+</ul>
+<p>Energy gates should be set from the <em>Energy Gates</em> tab before reconstruction and should reflect photopeak positions. The <em>Energy Spectrum</em> tab can be used to precisely find these values. Up to 5 energy gates can be set as of version 3.0.2.</p>
+<p>You can also select whether or not the data should be saved. If it is to be saved then please remember to set the save directory from the <em>Settings</em> tab before reconstructing the data. The 2D slice from each iteration of the reconstruction codes will be saved as a vector. This file can then be loaded into the image reconstruction pane at a future time if you don’t want to wait for the reconstruction again.</p>
+<p>You can also opt to produce a 3D plot from the data. I have included this as a separate option as the time it takes is fairly lengthy and it doesn’t provide much insight.</p>
 
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="01-about.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="07-userDepthAbs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="09-userFitting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

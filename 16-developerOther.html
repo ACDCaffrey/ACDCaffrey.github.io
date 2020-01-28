@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Liverpool Compton Imaging App Overview</title>
+  <title>3.4 Other Information | Liverpool Compton Imaging App Overview</title>
   <meta name="description" content="How to use the Compton imaging app at the University of Liverpool." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Liverpool Compton Imaging App Overview" />
+  <meta property="og:title" content="3.4 Other Information | Liverpool Compton Imaging App Overview" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Liverpool Compton Imaging App Overview" />
+  <meta name="twitter:title" content="3.4 Other Information | Liverpool Compton Imaging App Overview" />
   
   <meta name="twitter:description" content="How to use the Compton imaging app at the University of Liverpool." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="15-developerElectron.html"/>
 
-<link rel="next" href="01-about.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -101,19 +101,36 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Liverpool Compton Imaging App Overview</h1>
-<p class="author"><em>Adam Caffrey</em></p>
-<p class="date"><em>2020-01-28</em></p>
-</div>
+<div id="other-information" class="section level2">
+<h2><span class="header-section-number">3.4</span> Other Information</h2>
+<p>There are a few final points you should be aware of if you are going to be building on this application.</p>
+<p>Firstly, if you want to add more libraries to the app you must install them to the stand-alone R compiler. To do this, go to the <em>R-Portable-Mac</em> folder in your terminal and then start the compiler using the shortcut, <code>./R</code>. You can then simply install them as you normally would (<code>install.packages(&quot;package name&quot;)</code>).</p>
+<p>Next, I have had some serious issues with permissions and Catalina. When I ran <code>npm start</code> I was told that this is not a trusted app etc. I found that the only way to get this to work was to reinstall a local version of npm and then try the command again. Hopefully, this time it will register and throw up different warnings. You will need to follow the standard proceedures for allowing files to be openned using the <em>security</em> section of system preferences. You may also need to reinstall some of the libraries (shiny, tidyverse, httput). This is a really irritating error and I wish I could say I knew a better way to fix it.</p>
+<p>The section in the <em>energy_spectrum.R</em> file which sets the hovering energy box position is acting strangely. For the following lines:</p>
+<pre><code>left_px &lt;- hover$range$left + left_pct * (hover$range$right - hover$range$left)/2 - hover$range$left/2
+top_px &lt;- hover$range$top + top_pct * (hover$range$bottom - hover$range$top)/2 - hover$range$top/2 </code></pre>
+<p>I had to recently add the <code>/2</code> and final arguments (<code>hover$range$left/2</code> and <code>hover$range$left/2</code>) because the hovering box in the latest compilation changed its behaviour. Be on the lookout for this in future versions, it may need to be reverted.</p>
+<p>You cannot add Rcpp code as methods. A C compiler is not supplied with the app and it will throw an error. To get around this you will need to create custom packages and link them as a library. I have done this for the <em>dan</em> and <em>SOE</em> functions and these are placed in the <em>libraries</em> folder within <em>R-Portable-Mac</em>.</p>
+<p>You can easily alter the app’s aesthetics using the <em>skin</em> property at the bottom of the <em>ui.R</em> file. I have found this to be quite restrictive though and instead opted to alter the css, written at the top of the file. The main ones you will likely change if you wanted to reskin it are found at the bottom of the css section and it should be easy to determine what they match up with.</p>
+<p>Please add any new libraries to the references tab and keep the release notes up to date. If you make significant changes don’t hesitate to add your name to the references section too.</p>
+<p>Future updates I think would be good:</p>
+<ul>
+<li>Re-add the MLEM code (it was rediculously slow previously, it needs a lot of work)<br />
+</li>
+<li>Add the ability to combine multiple angle X-Z images (may cause memory issues as many files will be loaded)<br />
+</li>
+<li>Add HPF for the combined angle image (currently done in python)</li>
+</ul>
 
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="15-developerElectron.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="01-about.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

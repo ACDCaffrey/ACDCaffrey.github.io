@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Liverpool Compton Imaging App Overview</title>
+  <title>2.9 Reconstructing Multiple Slices | Liverpool Compton Imaging App Overview</title>
   <meta name="description" content="How to use the Compton imaging app at the University of Liverpool." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Liverpool Compton Imaging App Overview" />
+  <meta property="og:title" content="2.9 Reconstructing Multiple Slices | Liverpool Compton Imaging App Overview" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Liverpool Compton Imaging App Overview" />
+  <meta name="twitter:title" content="2.9 Reconstructing Multiple Slices | Liverpool Compton Imaging App Overview" />
   
   <meta name="twitter:description" content="How to use the Compton imaging app at the University of Liverpool." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="01-about.html"/>
+<link rel="prev" href="10-userFiltering.html"/>
+<link rel="next" href="12-developerGuide.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -101,19 +101,34 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Liverpool Compton Imaging App Overview</h1>
-<p class="author"><em>Adam Caffrey</em></p>
-<p class="date"><em>2020-01-28</em></p>
-</div>
+<div id="reconstructing-multiple-slices" class="section level2">
+<h2><span class="header-section-number">2.9</span> Reconstructing Multiple Slices</h2>
+<p>This tab allows you to reconstruct multiple image slices between two distances from the detector using the analytical reconstruction code. The options are very similar to those from the <em>Image Reconstruction</em> tab.</p>
+<p><img src="Images/multiple_reconstruction_screen.png" width="1435" /></p>
+<p>In addition to the previous options, you now get the choice to:</p>
+<ul>
+<li><strong>Calculate FWHM</strong>: Determine the FWHM from the image profile through the reconstructed Compton image at both the row and column passing through the pixel of maximum intensity. This can be useful to determine the most likely position of the source.<br />
+</li>
+<li><strong>Save Each</strong>: Select whether or not each reconstructed Compton image should be saved as a text file to the directory selected from the <em>Settings</em> tab. An additional text file is also saved with information regarding the FWHM and maximum overlaps at each reconstructed distance.</li>
+</ul>
+<p>Once you have reconstructed the data between your chosen distances you can view the following plots:</p>
+<ul>
+<li><strong>3D Plot</strong>: This displays a 3D scatter plot of overlaps at each position surrounding the source. A cutoff is set to only display points greater than a particular fraction of the maximum number of Compton cone overlaps. This cutoff fraction is set in the <em>Plotting</em> tab. The plot can be rotated and its colour scheme changed from this tab too. Once you are happy with your settings click “<em>Update Plot</em>” to display the results.<br />
+</li>
+<li><strong>Max at Distance</strong>: This plot displays the maximum overlap value in a reconstructed Compton image at each millimeter distance. This plot can be used to estimate the likely position of a source. The estimated position is displayed as text below the plot once each distance slice has been reconstructed.<br />
+</li>
+<li><strong>FWHM Row/Col</strong>: These plots display the FWHM calculated from the fitted distributions at each slice. If a distribution could not be fitted then the corresponding points are left blank (NA). An angular version of these plots are also created if you prefer to see the FWHM output in degrees rather than millimeters.</li>
+</ul>
 
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="01-about.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="10-userFiltering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="12-developerGuide.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

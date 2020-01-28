@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.3 Understanding the Electron Files | Liverpool Compton Imaging App Overview</title>
+  <meta name="description" content="How to use the Compton imaging app at the University of Liverpool." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.3 Understanding the Electron Files | Liverpool Compton Imaging App Overview" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="How to use the Compton imaging app at the University of Liverpool." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.3 Understanding the Electron Files | Liverpool Compton Imaging App Overview" />
+  
+  <meta name="twitter:description" content="How to use the Compton imaging app at the University of Liverpool." />
+  
+
+<meta name="author" content="Adam Caffrey" />
+
+
+<meta name="date" content="2020-01-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="14-developerBasics.html"/>
+<link rel="next" href="16-developerOther.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="01-about.html"><a href="01-about.html"><i class="fa fa-check"></i><b>1</b> About this App</a></li>
+<li class="chapter" data-level="2" data-path="02-userGuide.html"><a href="02-userGuide.html"><i class="fa fa-check"></i><b>2</b> User Guide</a><ul>
+<li class="chapter" data-level="2.1" data-path="03-userLoadData.html"><a href="03-userLoadData.html"><i class="fa fa-check"></i><b>2.1</b> Loading Data into the Application</a></li>
+<li class="chapter" data-level="2.2" data-path="04-userEnergySpectra.html"><a href="04-userEnergySpectra.html"><i class="fa fa-check"></i><b>2.2</b> Displaying Energy Spectra</a></li>
+<li class="chapter" data-level="2.3" data-path="05-userEnergyMatrix.html"><a href="05-userEnergyMatrix.html"><i class="fa fa-check"></i><b>2.3</b> Energy Matrix</a></li>
+<li class="chapter" data-level="2.4" data-path="06-userDetectorHits.html"><a href="06-userDetectorHits.html"><i class="fa fa-check"></i><b>2.4</b> Detector Hits</a></li>
+<li class="chapter" data-level="2.5" data-path="07-userDepthAbs.html"><a href="07-userDepthAbs.html"><i class="fa fa-check"></i><b>2.5</b> Depths of Interactions</a></li>
+<li class="chapter" data-level="2.6" data-path="08-userImageReconstruction.html"><a href="08-userImageReconstruction.html"><i class="fa fa-check"></i><b>2.6</b> Reconstructing Data</a></li>
+<li class="chapter" data-level="2.7" data-path="09-userFitting.html"><a href="09-userFitting.html"><i class="fa fa-check"></i><b>2.7</b> Fitting Data</a></li>
+<li class="chapter" data-level="2.8" data-path="10-userFiltering.html"><a href="10-userFiltering.html"><i class="fa fa-check"></i><b>2.8</b> Filtering Compton Images</a></li>
+<li class="chapter" data-level="2.9" data-path="11-userMultipleReconstruction.html"><a href="11-userMultipleReconstruction.html"><i class="fa fa-check"></i><b>2.9</b> Reconstructing Multiple Slices</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="12-developerGuide.html"><a href="12-developerGuide.html"><i class="fa fa-check"></i><b>3</b> Developer Guide</a><ul>
+<li class="chapter" data-level="3.1" data-path="13-developerStructure.html"><a href="13-developerStructure.html"><i class="fa fa-check"></i><b>3.1</b> App File Structure</a></li>
+<li class="chapter" data-level="3.2" data-path="14-developerBasics.html"><a href="14-developerBasics.html"><i class="fa fa-check"></i><b>3.2</b> Starting and Compiling the App</a></li>
+<li class="chapter" data-level="3.3" data-path="15-developerElectron.html"><a href="15-developerElectron.html"><i class="fa fa-check"></i><b>3.3</b> Understanding the Electron Files</a></li>
+<li class="chapter" data-level="3.4" data-path="16-developerOther.html"><a href="16-developerOther.html"><i class="fa fa-check"></i><b>3.4</b> Other Information</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Liverpool Compton Imaging App Overview</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="understanding-the-electron-files" class="section level2">
+<h2><span class="header-section-number">3.3</span> Understanding the Electron Files</h2>
+<p>The two main electron files are <em>package.json</em> and <em>main.js</em>. You shouldn’t need to change these if you are editting the app but they are useful to understand and may need to be editted at a later date. The package-json.lock file is automatically created when you call <code>npm install</code> and keeps a record of the required javascript libraries and versions.</p>
+<p><strong>package.json</strong></p>
+<p>Firstly, the <em>package.json</em> file. The current contents as of 27-01-20 is displayed below.</p>
+<pre><code>{
+  &quot;name&quot;: &quot;electron-quick-start&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;A minimal Electron application&quot;,
+  &quot;main&quot;: &quot;main.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;electron .&quot;,
+    &quot;package-mac&quot;: &quot;electron-packager . --overwrite --platform=darwin --arch=x64 --out=ElectronShinyAppMac&quot;,
+    &quot;package-linux&quot;: &quot;electron-packager . --overwrite --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds&quot;
+  },
+  &quot;repository&quot;: &quot;https://github.com/electron/electron-quick-start&quot;,
+  &quot;keywords&quot;: [
+    &quot;Electron&quot;,
+    &quot;quick&quot;,
+    &quot;start&quot;,
+    &quot;tutorial&quot;,
+    &quot;demo&quot;
+  ],
+  &quot;author&quot;: &quot;GitHub&quot;,
+  &quot;devDependencies&quot;: {
+    &quot;electron&quot;: &quot;7.1.9&quot;
+  }
+}
+</code></pre>
+<p>This file displays details about the app, such as the name and version (I don’t really bother updating this because it is noted in the release notes). It is all relatively intuitive. The main lines to focus on are:</p>
+<pre><code>&quot;main&quot;: &quot;main.js&quot;,</code></pre>
+<p>This points to the file which is ran when the app is started.</p>
+<pre><code>&quot;package-mac&quot;: &quot;electron-packager . --overwrite --platform=darwin --arch=x64 --out=ElectronShinyAppMac&quot;,
+&quot;package-linux&quot;: &quot;electron-packager . --overwrite --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png</code></pre>
+<p>These two lines are alias’ for compiling the code into an executable. It is what actually gets ran when you type <code>npm run package-mac</code> or <code>package-linux</code>. Packaging the app for linux isn’t something I’ve tried yet but it should be possible after a couple of changes to <em>main.js</em>. Similarly this could be done for windows too if you add the line:</p>
+<pre><code>&quot;package-win&quot;: &quot;electron-packager . --overwrite --platform=win32 --arch=ia32 --icon=cc.ico --out=ElectronShinyAppWindows --version-string.CompanyName=ColumbusCollaboratory --version-string.FileDescription=CE --version-string.ProductName=\&quot;Shiny Electron App\&quot;&quot;,
+</code></pre>
+<p>I’ve currently removed this line from the app because no-one seems to use windows in the University. I have kept most of the information in this file as it originally was. It can be changed if you like.</p>
+<p><strong>main.js</strong></p>
+<p>This is the file which is called when the app is run. I have printed the most important sections below as a reference for when I describe them later.</p>
+<pre><code>const {app, BrowserWindow} = require(&#39;electron&#39;)
+const path = require(&#39;path&#39;)
+
+const url = require(&#39;url&#39;)
+const port = &quot;9194&quot;
+const child = require(&#39;child_process&#39;);
+const MACOS = &quot;darwin&quot;
+
+var killStr = &quot;&quot;
+var appPath = path.join(app.getAppPath(), &quot;R_code&quot;, &quot;ui.R&quot; )
+var execPath = &quot;RScript&quot;
+
+if(process.platform == MACOS){
+
+  var macAbsolutePath = path.join(app.getAppPath(), &quot;R-Portable-Mac&quot;)
+  var env_path = macAbsolutePath+((process.env.PATH)?&quot;:&quot;+process.env.PATH:&quot;&quot;);
+  var env_libs_site = macAbsolutePath+&quot;/library&quot;+((process.env.R_LIBS_SITE)?&quot;:&quot;+process.env.R_LIBS_SITE:&quot;&quot;);
+  process.env.PATH = env_path
+  process.env.R_LIBS_SITE = env_libs_site
+  process.env.NODE_R_HOME = macAbsolutePath
+
+  execPath = path.join(app.getAppPath(), &quot;R-Portable-Mac&quot;, &quot;bin&quot;, &quot;R&quot; )
+} else {
+  throw new Error(&quot;This only works on mac, error!&quot;)
+}
+
+const childProcess = child.spawn(execPath, [&quot;-e&quot;, &quot;shiny::runApp(file.path(&#39;&quot;+appPath+&quot;&#39;), port=&quot;+port+&quot;)&quot;])
+childProcess.stdout.on(&#39;data&#39;, (data) =&gt; {
+  console.log(`stdout:${data}`)
+})
+childProcess.stderr.on(&#39;data&#39;, (data) =&gt; {
+  console.log(`stderr:${data}`)
+})
+
+function createWindow () {
+
+    let loading = new BrowserWindow({show: false, frame: false})
+    loading.loadURL(&quot;data:text/html;charset=utf-8;base64,PGh0bWw+DQo8c3R5bGU+DQpib2R5ew0KICBwYWRkaW5nOiAxZW07DQogIGNvbG9yOiAjNzc3Ow0KICB0ZXh0LWFsaWduOiBjZW50ZXI7DQogIGZvbnQtZmFtaWx5OiAiR2lsbCBzYW5zIiwgc2Fucy1zZXJpZjsNCiAgd2lkdGg6IDgwJTsNCiAgbWFyZ2luOiAwIGF1dG87DQp9DQpoMXsNCiAgbWFyZ2luOiAxZW0gMDsNCiAgYm9yZGVyLWJvdHRvbTogMXB4IGRhc2hlZDsNCiAgcGFkZGluZy1ib3R0b206IDFlbTsNCiAgZm9udC13ZWlnaHQ6IGxpZ2h0ZXI7DQp9DQpwew0KICBmb250LXN0eWxlOiBpdGFsaWM7DQp9DQoubG9hZGVyew0KICBtYXJnaW46IDAgMCAyZW07DQogIGhlaWdodDogMTAwcHg7DQogIHdpZHRoOiAyMCU7DQogIHRleHQtYWxpZ246IGNlbnRlcjsNCiAgcGFkZGluZzogMWVtOw0KICBtYXJnaW46IDAgYXV0byAxZW07DQogIGRpc3BsYXk6IGlubGluZS1ibG9jazsNCiAgdmVydGljYWwtYWxpZ246IHRvcDsNCn0NCg0KLyoNCiAgU2V0IHRoZSBjb2xvciBvZiB0aGUgaWNvbg0KKi8NCnN2ZyBwYXRoLA0Kc3ZnIHJlY3R7DQogIGZpbGw6ICNGRjY3MDA7DQp9DQo8L3N0eWxlPg0KPGJvZHk+PCEtLSAzICAtLT4NCjxkaXYgY2xhc3M9ImxvYWRlciBsb2FkZXItLXN0eWxlMyIgdGl0bGU9IjIiPg0KICA8c3ZnIHZlcnNpb249IjEuMSIgaWQ9ImxvYWRlci0xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCiAgICAgd2lkdGg9IjgwcHgiIGhlaWdodD0iODBweCIgdmlld0JveD0iMCAwIDUwIDUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MCA1MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KICA8cGF0aCBmaWxsPSIjMDAwIiBkPSJNNDMuOTM1LDI1LjE0NWMwLTEwLjMxOC04LjM2NC0xOC42ODMtMTguNjgzLTE4LjY4M2MtMTAuMzE4LDAtMTguNjgzLDguMzY1LTE4LjY4MywxOC42ODNoNC4wNjhjMC04LjA3MSw2LjU0My0xNC42MTUsMTQuNjE1LTE0LjYxNWM4LjA3MiwwLDE0LjYxNSw2LjU0MywxNC42MTUsMTQuNjE1SDQzLjkzNXoiPg0KICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZVR5cGU9InhtbCINCiAgICAgIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSINCiAgICAgIHR5cGU9InJvdGF0ZSINCiAgICAgIGZyb209IjAgMjUgMjUiDQogICAgICB0bz0iMzYwIDI1IDI1Ig0KICAgICAgZHVyPSIwLjZzIg0KICAgICAgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4NCiAgICA8L3BhdGg+DQogIDwvc3ZnPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+&quot;);
+
+    loading.once(&#39;show&#39;, () =&gt; {
+
+      mainWindow = new BrowserWindow({webPreferences:{nodeIntegration:false}, show:false, width: 800, height: 600, title:&quot;&quot;})
+
+      mainWindow.webContents.once(&#39;dom-ready&#39;, () =&gt; {
+        setTimeout( () =&gt; {
+          mainWindow.show()
+          mainWindow.reload()
+          loading.hide()
+          loading.close()
+
+        }, 7000)
+
+      })
+
+      // long loading html
+      mainWindow.loadURL(&#39;http://127.0.0.1:&#39;+port)
+
+      // Emitted when the window is closed.
+      mainWindow.on(&#39;closed&#39;, function () {
+        cleanUpApplication()
+      })
+    })
+    loading.show()
+}
+</code></pre>
+<p>There are some basic code features you should know. <code>require</code> in javascript is equivalent to loading a library in other languaes. <code>Console.log</code> is the same as printing to terminal and <code>path.join</code> combines multiple strings into a path. Most of this can be figured out from reading the code and few comments.</p>
+<p>The primary things this code does is:</p>
+<ul>
+<li>Sets the path to the <em>ui.R</em> file:</li>
+</ul>
+<pre><code>var appPath = path.join(app.getAppPath(), &quot;R_code&quot;, &quot;ui.R&quot; )</code></pre>
+<ul>
+<li>Sets the path to the R compiler:</li>
+</ul>
+<pre><code>execPath = path.join(app.getAppPath(), &quot;R-Portable-Mac&quot;, &quot;bin&quot;, &quot;R&quot; )</code></pre>
+<ul>
+<li>Sets environmental variables:</li>
+</ul>
+<pre><code>var macAbsolutePath = path.join(app.getAppPath(), &quot;R-Portable-Mac&quot;)
+var env_path = macAbsolutePath+((process.env.PATH)?&quot;:&quot;+process.env.PATH:&quot;&quot;);
+var env_libs_site = macAbsolutePath+&quot;/library&quot;+((process.env.R_LIBS_SITE)?&quot;:&quot;+process.env.R_LIBS_SITE:&quot;&quot;);
+process.env.PATH = env_path
+process.env.R_LIBS_SITE = env_libs_site
+process.env.NODE_R_HOME = macAbsolutePath</code></pre>
+<ul>
+<li>Runs the shiny app:</li>
+</ul>
+<pre><code>const childProcess = child.spawn(execPath, [&quot;-e&quot;, &quot;shiny::runApp(file.path(&#39;&quot;+appPath+&quot;&#39;), port=&quot;+port+&quot;)&quot;])</code></pre>
+<ul>
+<li>Gets the loading graphic:</li>
+</ul>
+<pre><code>loading.loadURL(&quot;data:text/html;charset=utf-8;base64,PGh0bWw+D...&quot;);</code></pre>
+<ul>
+<li>Sets the timeout limit:</li>
+</ul>
+<pre><code>mainWindow.webContents.once(&#39;dom-ready&#39;, () =&gt; {
+  setTimeout( () =&gt; {
+    mainWindow.show()
+    mainWindow.reload()
+    loading.hide()
+    loading.close()
+  }, 7000)</code></pre>
+<ul>
+<li>Sets the address that the app is run:</li>
+</ul>
+<pre><code>const port = &quot;9194&quot;
+mainWindow.loadURL(&#39;http://127.0.0.1:&#39;+port)</code></pre>
+<p>You may want to alter the timeout limit (currently 7000) if the app is failing to load within the required time. I have also found that occasionally Catalina blocks ports for some unknown reason. You may want to kill the process manually from the terminal and change the port number (currently 9194) before running again. One final issue I previously had was that the version of electron in the <em>npm_modules</em> folder was outdated and throwing an error, causing the app to constantly crash. To fix this I crated a new shny app and transferred the electron module from this across, and then alterred the <em>package.json</em> file to match the newer version.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="14-developerBasics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="16-developerOther.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

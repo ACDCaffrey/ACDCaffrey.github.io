@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Liverpool Compton Imaging App Overview</title>
+  <title>3.1 App File Structure | Liverpool Compton Imaging App Overview</title>
   <meta name="description" content="How to use the Compton imaging app at the University of Liverpool." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Liverpool Compton Imaging App Overview" />
+  <meta property="og:title" content="3.1 App File Structure | Liverpool Compton Imaging App Overview" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Liverpool Compton Imaging App Overview" />
+  <meta name="twitter:title" content="3.1 App File Structure | Liverpool Compton Imaging App Overview" />
   
   <meta name="twitter:description" content="How to use the Compton imaging app at the University of Liverpool." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="01-about.html"/>
+<link rel="prev" href="12-developerGuide.html"/>
+<link rel="next" href="14-developerBasics.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -101,19 +101,59 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Liverpool Compton Imaging App Overview</h1>
-<p class="author"><em>Adam Caffrey</em></p>
-<p class="date"><em>2020-01-28</em></p>
-</div>
+<div id="app-file-structure" class="section level2">
+<h2><span class="header-section-number">3.1</span> App File Structure</h2>
+<p>The file structure of this app is relatively simple. It consists of:</p>
+<p><strong>R code files</strong>: These can all be found in the R_code folder. The server functions are separated for convenience and placed in the <em>server_actions</em> folder. Markdown files containing the documentation are placed in the <em>Rmd</em> folder.</p>
+<p><strong>R compiler files</strong>: All the necessary files for the stand-alone R compiler are placed in the <em>R-Portable_Mac</em> folder. This includes the custom Rcpp functions used to run the reconstruction codes (dan &amp; SOE).</p>
+<p><strong>Electron files</strong>: The remaining collection of files; main.js, package.json, package-lock.json and the node modules folder come from the electron instance.</p>
+<p>The basic structure is highlighted below:</p>
+<pre><code>electron-quick-start
+│   main.js
+│   package.json  
+|   package-lock.json
+│
+└─── node_modules
+│   │   ...
+│   
+└─── R-Portable-Mac
+|   |   ...  
+│   
+└─── R_code
+    │   ui.R
+    │   server.R
+    |   R_code.proj
+    |
+    └─── Rmd
+    |    |   analytical.html   
+    |    |   citations.html
+    |    |   filter.html
+    |    |   Overview.html
+    |    |   Release_Notes.html
+    |    |   soe.html
+    |    
+    └─── server_actions
+         |   energy_matrix.R
+         |   energy_spectrum.R
+         |   filtering.R
+         |   fitting.R
+         |   hit_locations.R
+         |   interaction_depths.R
+         |   load_data.R
+         |   multiple_slices.R
+         |   reconstructing.R
+    </code></pre>
+<p>The <em>node_modeules</em> and <em>R-Portable-Mac</em> folders contain too many files to comfortably display on the above file tree. The most important ones to note are the <em>R</em> shortcut and <em>libraries</em> folder in <em>R-Portable-Mac</em> and the <em>electron</em> folder in the <em>node_modules</em> folder.</p>
+<p>I have found this layout to be the optimum way to deal with multiple R scripts. Originally the <em>ui.R</em> and <em>server.R</em> were contained in the same file but this was too combersome.</p>
 
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="01-about.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="12-developerGuide.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="14-developerBasics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
