@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.1 Loading Data into the Application | Liverpool Compton Imaging App Overview</title>
+  <meta name="description" content="How to use the Compton imaging app at the University of Liverpool." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.1 Loading Data into the Application | Liverpool Compton Imaging App Overview" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="How to use the Compton imaging app at the University of Liverpool." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.1 Loading Data into the Application | Liverpool Compton Imaging App Overview" />
+  
+  <meta name="twitter:description" content="How to use the Compton imaging app at the University of Liverpool." />
+  
+
+<meta name="author" content="Adam Caffrey" />
+
+
+<meta name="date" content="2020-01-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="02-userGuide.html"/>
+<link rel="next" href="04-userEnergySpectra.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="01-about.html"><a href="01-about.html"><i class="fa fa-check"></i><b>1</b> About this App</a></li>
+<li class="chapter" data-level="2" data-path="02-userGuide.html"><a href="02-userGuide.html"><i class="fa fa-check"></i><b>2</b> User Guide</a><ul>
+<li class="chapter" data-level="2.1" data-path="03-userLoadData.html"><a href="03-userLoadData.html"><i class="fa fa-check"></i><b>2.1</b> Loading Data into the Application</a></li>
+<li class="chapter" data-level="2.2" data-path="04-userEnergySpectra.html"><a href="04-userEnergySpectra.html"><i class="fa fa-check"></i><b>2.2</b> Displaying Energy Spectra</a></li>
+<li class="chapter" data-level="2.3" data-path="05-userEnergyMatrix.html"><a href="05-userEnergyMatrix.html"><i class="fa fa-check"></i><b>2.3</b> Energy Matrix</a></li>
+<li class="chapter" data-level="2.4" data-path="06-userDetectorHits.html"><a href="06-userDetectorHits.html"><i class="fa fa-check"></i><b>2.4</b> Detector Hits</a></li>
+<li class="chapter" data-level="2.5" data-path="07-userDepthAbs.html"><a href="07-userDepthAbs.html"><i class="fa fa-check"></i><b>2.5</b> Depths of Interactions</a></li>
+<li class="chapter" data-level="2.6" data-path="08-userImageReconstruction.html"><a href="08-userImageReconstruction.html"><i class="fa fa-check"></i><b>2.6</b> Reconstructing Data</a></li>
+<li class="chapter" data-level="2.7" data-path="09-userFitting.html"><a href="09-userFitting.html"><i class="fa fa-check"></i><b>2.7</b> Fitting Data</a></li>
+<li class="chapter" data-level="2.8" data-path="10-userFiltering.html"><a href="10-userFiltering.html"><i class="fa fa-check"></i><b>2.8</b> Filtering Compton Images</a></li>
+<li class="chapter" data-level="2.9" data-path="11-userMultipleReconstruction.html"><a href="11-userMultipleReconstruction.html"><i class="fa fa-check"></i><b>2.9</b> Reconstructing Multiple Slices</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="12-developerGuide.html"><a href="12-developerGuide.html"><i class="fa fa-check"></i><b>3</b> Developer Guide</a><ul>
+<li class="chapter" data-level="3.1" data-path="13-developerStructure.html"><a href="13-developerStructure.html"><i class="fa fa-check"></i><b>3.1</b> App File Structure</a></li>
+<li class="chapter" data-level="3.2" data-path="14-developerBasics.html"><a href="14-developerBasics.html"><i class="fa fa-check"></i><b>3.2</b> Starting and Compiling the App</a></li>
+<li class="chapter" data-level="3.3" data-path="15-developerElectron.html"><a href="15-developerElectron.html"><i class="fa fa-check"></i><b>3.3</b> Understanding the Electron Files</a></li>
+<li class="chapter" data-level="3.4" data-path="16-developerOther.html"><a href="16-developerOther.html"><i class="fa fa-check"></i><b>3.4</b> Other Information</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Liverpool Compton Imaging App Overview</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="loading-data-into-the-application" class="section level2">
+<h2><span class="header-section-number">2.1</span> Loading Data into the Application</h2>
+<p>Upon loading the application you will see a screen similar to the image below.</p>
+<p><img src="Images/load_data_screen.png" width="1435" /></p>
+<p>You are prompted to select a GEANT4 formatted file. This style is based on the input format of Dan’s analytical reconstruction code, originally written in C. Data can be separated by either a tab, comma or equal amounts of whitespace. The data must have 8 or more columns. The data format should be as follows:</p>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Z1
+</th>
+<th style="text-align:right;">
+Y1
+</th>
+<th style="text-align:right;">
+X1
+</th>
+<th style="text-align:right;">
+E1
+</th>
+<th style="text-align:right;">
+Z2
+</th>
+<th style="text-align:right;">
+Y2
+</th>
+<th style="text-align:right;">
+X2
+</th>
+<th style="text-align:right;">
+E2
+</th>
+<th style="text-align:right;">
+Tier
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+16.5
+</td>
+<td style="text-align:right;">
+-4.4
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+27.5
+</td>
+<td style="text-align:right;">
+-10.5
+</td>
+<td style="text-align:right;">
+424
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+8.8
+</td>
+<td style="text-align:right;">
+5.5
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+6.5
+</td>
+<td style="text-align:right;">
+-27.5
+</td>
+<td style="text-align:right;">
+314
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+9.9
+</td>
+<td style="text-align:right;">
+23.1
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+11.5
+</td>
+<td style="text-align:right;">
+628
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+-22.0
+</td>
+<td style="text-align:right;">
+-2.2
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+-11.5
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+-14.3
+</td>
+<td style="text-align:right;">
+-27.5
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+11.5
+</td>
+<td style="text-align:right;">
+23.5
+</td>
+<td style="text-align:right;">
+182
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+-2.2
+</td>
+<td style="text-align:right;">
+7.7
+</td>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:right;">
+22.5
+</td>
+<td style="text-align:right;">
+145
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+-2.2
+</td>
+<td style="text-align:right;">
+-24.2
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+-16.5
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+164
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+-8.8
+</td>
+<td style="text-align:right;">
+1.1
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+13.5
+</td>
+<td style="text-align:right;">
+-9.5
+</td>
+<td style="text-align:right;">
+161
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+-8.8
+</td>
+<td style="text-align:right;">
+-8.8
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+27.5
+</td>
+<td style="text-align:right;">
+-27.5
+</td>
+<td style="text-align:right;">
+123
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+27.5
+</td>
+<td style="text-align:right;">
+5.5
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+10.5
+</td>
+<td style="text-align:right;">
+-2.5
+</td>
+<td style="text-align:right;">
+230
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p>If only 8 columns of data are supplied the Tier column will be absent. If more than 8 columns are supplied only 9 will be loaded and the remaining will be cropped. The ninth column will hold the Tier flag. The tier flag looks for any two numeric values. 0 and 1 are typically output from MTsort but any two values can be used.</p>
+<p>The input data should contain no column names. Names are asigned upon being loaded into the program and depend on the number of input columns. A portion of the input information will be diplayed as a table. This table should be used to explore the data. It can tell you the range of values, number of entries and can highlight any obvious outliers.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="02-userGuide.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="04-userEnergySpectra.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
