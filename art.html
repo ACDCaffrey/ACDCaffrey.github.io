@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+.header {
+  text-align: center;
+  padding: 32px;
+  font-size: 24pt;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.itembox{
+  border-radius: .25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.itembox:hover{
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2), 0 10px 15px 0 rgba(0, 0, 0, 0.2);
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
+</style>
+
+  <meta charset="utf-8" />
+  <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+
+  <body>
+
+    <!-- Header -->
+    <div class="header">
+      <h1>Artwork</h1>
+    </div>
+
+    <!-- Photo Grid -->
+    <div class="row">
+      <div class="column">
+        <a target="_blank" href="./images/drawings/fire.png">
+          <img class="itembox" src="./images/drawings/fire.png" alt="greys fire">
+        </a>
+        <a target="_blank" href="./images/drawings/bad_game_idea1.png">
+          <img class="itembox" src="./images/drawings/bad_game_idea1.png" alt="red cavern1">
+        </a>
+      </div>
+
+      <div class="column">
+        <a target="_blank" href="./images/drawings/mr_circle.png">
+          <img class="itembox" src="./images/drawings/mr_circle.png" alt="Mr Circle">
+        </a>
+        <a target="_blank" href="./images/drawings/vids/almost_woman.mp4">
+          <img class="itembox" src="./images/drawings/almost_woman.png" alt="Female Face Attempt">
+        </a>
+      </div>
+
+      <div class="column">
+        <a target="_blank" href="./images/drawings/vids/space_land.mp4">
+          <img class="itembox" src="./images/drawings/space_land.png" alt="Space Biom">
+        </a>
+        <a target="_blank" href="./images/drawings/mr_wolf.png">
+          <img class="itembox" src="./images/drawings/mr_wolf.png" alt="Mr Wolf">
+        </a>
+      </div>
+
+      <div class="column">
+        <a target="_blank" href="./images/drawings/vids/bears.mp4">
+          <img class="itembox" src="./images/drawings/bears.png" alt="Happy bearsday">
+        </a>
+      </div>
+
+
+    </div>
+
+  </body>
+</html>
