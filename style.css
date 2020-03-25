@@ -39,7 +39,7 @@ body{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 2em;
-    margin: 2em 2em 2em 6em;
+    margin: 2em 2em 2em 2em;
 }
 
 .card{
