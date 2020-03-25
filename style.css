@@ -5,7 +5,7 @@ html{
 }
 
 body{
-    background-color: #F5F5F5;
+    background-color:  #F5F5F5;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -15,31 +15,24 @@ body{
 }
 /* The sidebar menu */
 .sidenav{
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
-    left: 0;
     overflow-x: hidden; /* Disable horizontal scroll */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     margin: 0em;
     background-color: white;
-    padding: 2em 2em;
-    width: 20em;
+    padding: 0em 2em;
     color: #404040;
 }
 
 /* The navigation menu links */
 .sidenav:hover{
     box-shadow: 0 6px 18px 0 rgba(0,0,0,0.2);
-
 }
 
 /* Style page content */
 .main{
-    margin-left: 20em; /* Same as the width of the sidebar */
-    padding: 0px 10px;
 }
 
 .wrapper{
@@ -76,7 +69,7 @@ body{
 
 a.button{
     text-decoration: none;
-    background-color: #2979FF;
+    background-color: #4963ba; /* #2979FF; */
     border: none;
     padding: .5rem 1.2em;
     cursor: pointer;
@@ -103,15 +96,12 @@ a.button:hover{
 /* text inside containers */
 h1{
     font-weight: 500;
-    border-bottom: .1rem solid #eee;
-    padding-bottom: .1em;
-    text-align: center;
-    color: #404040;
+    color: black; #404040;
 }
 
 h4{
     font-weight: 300;
     font-size: 20px;
     line-height:.1em;
-    color: #2979FF;
+    color: #4963ba; /* #2979FF; */
 }
