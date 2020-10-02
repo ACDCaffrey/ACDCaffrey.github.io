@@ -69,6 +69,7 @@ h1{
 #risetimebutton:hover{
   background-color: steelblue;
   color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18);
 }
 
 p {
