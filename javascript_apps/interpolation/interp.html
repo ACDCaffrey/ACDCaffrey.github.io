@@ -1,0 +1,37 @@
+<html lang="en-GB">
+ <head>
+    <title>Digital Pulse analysis</title>
+    <link rel="stylesheet" type="text/css" href="./interp_stylesheet.css">
+    <meta charset="UTF-8">
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <meta name="description" content="Interpolation App">
+    <meta name="keywords" content="Interpolation">
+    <meta name="author" content="Adam Caffrey">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+
+  <div class="main_wrapper">
+    <h1 style="text-align:center">Interpolation App</h1>
+
+    <div class="text_box">
+      <p>This app was developed using the d3 library. It visualises the impact of signal interpolation on risetime</p>
+      <p>To use:</p>
+      <p><b>Step 1:</b> Select a sampling frequency from the dropdown</p>
+      <p><b>Step 2:</b> Click the button to visualise pulse risetime. Risetime values are calculated as the first time registered after the signal ascends above a threshold.</p>
+    </div>
+
+    <div class="custom_select">
+      <label for="frequency">Select a Frequency:</label>
+      <select id="selectfrequency"></select>
+      <input id="risetimebutton" type="button" value="Display Risetime"/>
+    </div>
+
+    <div id="pulseplot" style="margin-top:10px;"></div>
+
+  </div> <!-- end main_wrapper -->
+
+  <script src="./interp_script.js"></script>
+  </body>
+</html>
