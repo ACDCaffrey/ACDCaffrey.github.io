@@ -1,0 +1,26 @@
+#main_wrapper{
+  width: 80%;
+  text-align: center;
+  margin: auto;
+}
+
+#comptonapp{
+  width: 100%;
+}
+
+.svg-container {
+  display: inline-block;
+  position: relative;
+  width: auto;
+  vertical-align: top;
+  overflow: hidden;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.svg-content {
+  display: inline-block;
+  position: relative;
+}
