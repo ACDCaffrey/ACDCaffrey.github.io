@@ -1,12 +1,30 @@
-#main_wrapper{
-  width: 80%;
-  text-align: center;
-  margin: auto;
-  font-style: sans-serif;
+body {
+  margin: 0;
 }
 
-#comptonapp{
-  width: 100%;
+.main_wrapper{
+  width:80%;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+.text_box{
+  font-size: 20px;
+  text-align:center;
+}
+
+h1{
+  font-size:30px;
+}
+
+@media (max-width: 650px){
+  .text_box{
+    font-size: 11px;
+  }
+
+  h1{
+    font-size:20px;
+  }
 }
 
 .svg-container {
@@ -24,4 +42,13 @@
 .svg-content {
   display: inline-block;
   position: relative;
+}
+
+#pulseplot{
+  width:60%;
+}
+
+p {
+  font-weight: 100;
+  line-height: 160%;
 }

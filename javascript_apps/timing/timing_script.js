@@ -55,7 +55,7 @@ d3.csv("./rfile.csv",
 
     for(var i = delay; i < 1221; i++){
       data_early[(i-delay)] = {x: (i-delay), y: data[i].y_500};
-      zero_line[(i-delay)] = {x: i, y: 0};
+      zero_line[(i-delay)] = {x: (i-delay), y: 0};
     }
 
     // Initialize line with group a
