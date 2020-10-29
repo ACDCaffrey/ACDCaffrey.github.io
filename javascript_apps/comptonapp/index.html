@@ -8,31 +8,24 @@
   <meta name="keywords" content="signal, nuclear instrumentation, timing, cfd">
   <meta name="author" content="adamcaffrey">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 
 <body>
 
   <div id="main_wrapper">
 
-    <label for="energyInput">Enter a gamma-ray energy:</label>
+    <h1>Compton Apps</h1>
+
+    <p>Page creation is ongoing, further apps to be added soon, hire me!</p>
+
+    <label for="energyInput" style="font-family:sans-serif;">Enter a gamma-ray energy:</label>
     <input type="number" value = 1000 id="energyinput" onchange="updatecomptonplot()">
+    <br><br>
 
     <div id="comptonapp"></div>
 
-    <p>
-      Gamma-rays that undergo Compton scattering in a radiation detector without depositing their remaining energy through Photoelectric absorption in the same detector are undesirable in gamma-ray spectroscopy.  That is because without full energy deposition it is not possible to identify which isotope produced the gamma-ray.  The energy deposited in the detector is that transferred to the electron by the gamma-ray and is related to the scattering angle by the following equation {insert Compton scattering equation}.
-      <br>
-      Experimentally, a continuum of energies is observed corresponding to gamma-rays scattering across the angular range up to 180 degrees.  The “Compton Edge” is the maximum energy that can be deposited by a gamma-ray Compton scattering. Use the app to estimate the Compton edge for 57Co (122keV), 137Cs (662keV) and 60Co (1172keV and 1332keV).
-      <br>
-      <sup>57</sup>Co Compton Edge ANSWER HERE
-      <br>
-      <sup>137</sup>Cs Compton Edge ANSWER HERE
-      <br>
-      <sup>60</sup>Co Compton Edge 1 ANSWER HERE and Compton Edge 2 ANSWER HERE
-      <br>
-      You can check how these estimates compare with experimentally observed results during your remote experiments.
-    </p>
+    <div id="comptonapptooltip"></div>
 
   </div>
 

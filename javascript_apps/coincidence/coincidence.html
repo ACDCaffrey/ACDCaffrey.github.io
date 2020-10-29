@@ -1,9 +1,10 @@
 <html lang="en-GB">
  <head>
-    <title>Digital Pulse analysis</title>
+    <title>Digital Pulse analysis - Coincidence Timing</title>
     <link rel="stylesheet" type="text/css" href="./coincidence_stylesheet.css">
     <meta charset="UTF-8">
-    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <!-- <script src="https://d3js.org/d3.v6.min.js"></script> -->
+    <script src="https://d3js.org/d3.v4.js"></script>
     <meta name="description" content="Timing App">
     <meta name="keywords" content="Timing">
     <meta name="author" content="Adam Caffrey">
@@ -13,20 +14,18 @@
   <body>
 
   <div class="main_wrapper">
-    <h1 style="text-align:center; padding-top:15px;">CFD Trigger Visualisation</h1>
+    <h1 style="text-align:center; padding-top:15px;">TAC Measurement Visualisation</h1>
 
     <div class="text_box">
-      <p>This app was developed using the d3 library. It visualises the stages of a CFD trigger.</p>
-      <p>Click the buttons to learn about each stage.</p>
+      <p>This app was developed using the d3 library. It visualises coincidence time measurements of two detectors using digital electronics.</p>
+      <p>Click "GO" to begin the visualisation.</p>
     </div>
 
-    <input type="button" value="yolo" onclick="gogopowerrangers()"/>
+    <input type="button" value="GO" id="powerranger"/>
 
     <br>
 
     <div id="pulseplot" style="margin-top:10px;"></div>
-
-    <div id="cfdinfo"><div>
 
     <br><br>
 
