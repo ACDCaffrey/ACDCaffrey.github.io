@@ -17,43 +17,7 @@ h1{
   font-size:30px;
 }
 
-@media (max-width: 650px){
-  .text_box{
-    font-size: 11px;
-  }
 
-  h1{
-    font-size:20px;
-  }
-
-  .custom_select{
-    width:100%;
-  }
-
-  #resetbutton{
-    font-size: 10px;
-  }
-
-  #cfdstage1{
-    font-size: 10px;
-    margin-left: 5px;
-  }
-
-  #cfdstage2{
-    font-size: 10px;
-    margin-left: 5px;
-  }
-
-  #cfdstage3{
-    font-size: 10px;
-    margin-left: 5px;
-  }
-
-  #pulseplot{
-    width:80%;
-  }
-
-}
 
 .svg-container {
   display: inline-block;
@@ -167,4 +131,65 @@ h1{
 p {
   font-weight: 100;
   line-height: 160%;
+}
+
+@media (max-width: 650px){
+  .text_box{
+    font-size: 11px;
+  }
+
+  h1{
+    font-size:20px;
+  }
+
+  .custom_select{
+    width:100%;
+  }
+
+  #resetbutton{
+    font-size: 10px;
+  }
+
+  #cfdstage1{
+    font-size: 10px;
+    margin-left: 5px;
+  }
+
+  #cfdstage2{
+    font-size: 10px;
+    margin-left: 5px;
+  }
+
+  #cfdstage3{
+    font-size: 10px;
+    margin-left: 5px;
+  }
+
+  #pulseplot{
+    width:80%;
+  }
+
+  #resetbutton{
+    font-size: 10px;
+    padding: 2px;
+  }
+
+  #cfdstage1{
+    font-size: 10px;
+    padding: 2px;
+    margin-left: 2%;
+  }
+
+
+  #cfdstage2{
+    font-size: 10px;
+    padding: 2px;
+    margin-left: 2%;
+  }
+
+  #cfdstage3{
+    font-size: 10px;
+    padding: 2px;
+    margin-left: 2%;
+  }
 }
