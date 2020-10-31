@@ -4,7 +4,7 @@
   <title>Signal Timing</title>
   <link rel="stylesheet" type="text/css" href="./stylesheet.css">
   <meta charset="UTF-8">
-  <meta name="description" content="Time to die">
+  <meta name="description" content="Apps useful for undersanding gamma-ray ineracions">
   <meta name="keywords" content="signal, nuclear instrumentation, timing, cfd">
   <meta name="author" content="adamcaffrey">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,15 +17,34 @@
 
     <h1>Compton Apps</h1>
 
-    <p>Page creation is ongoing, further apps to be added soon, hire me!</p>
+    <p>
+      When a gamma-ray Compton scatters in a material energy is transferred from the incident photon to an electron.
+      The plot below visualises the share of energy as a function of Compton scattering angle.
+    </p>
 
     <label for="energyInput" style="font-family:sans-serif;">Enter a gamma-ray energy:</label>
     <input type="number" value = 1000 id="energyinput" onchange="updatecomptonplot()">
     <br><br>
 
     <div id="comptonapp"></div>
+    <br><br>
 
     <div id="comptonapptooltip"></div>
+    <br><br>
+
+    <hr>
+
+    <p>
+      The angle through which a gamma-ray Compton scatters depends upon its initial energy.
+      The probability of a gamma-ray scattering through a particular angle is determined from the Klein-Nishina formula, visualised below.
+    </p>
+
+    <label for="energyInput2" style="font-family:sans-serif;">Enter a gamma-ray energy:</label>
+    <input type="number" value = 1000 id="energyinput2" onchange="updatecomptonplot2()">
+    <br><br>
+
+    <div id="comptonapp2"></div>
+    <br><br>
 
   </div>
 
