@@ -1,0 +1,41 @@
+
+<html lang="en-GB">
+<head>
+  <title>Signal Timing</title>
+  <link rel="stylesheet" type="text/css" href="./stylesheet.css">
+  <meta charset="UTF-8">
+  <meta name="description" content="Apps useful for undersanding gamma-ray ineracions">
+  <meta name="keywords" content="signal, nuclear instrumentation, timing, cfd">
+  <meta name="author" content="adamcaffrey">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+
+<body>
+
+  <div id="main_wrapper">
+
+    <h1>Neutron Moderation App</h1>
+
+    <p>
+      When a neutron scatters off a moderator atom with molecular mass 'n', energy is transferred from the incident neutron to the material.
+      The plot below visualises the share of energy as a function of scattering angle.
+    </p>
+
+    <label for="massInput" style="font-family:sans-serif;">Moderator mass number:</label>
+    <input type="number" value = 10 id="massinput" onchange="updateneutronplot()" min="0" step="1">
+
+    <br><br>
+
+    <div id="neutronapp"></div>
+    <br><br>
+
+    <div id="neutronapptooltip"></div>
+    <br><br>
+
+  </div>
+
+  <script src="./script.js"></script>
+
+</body>
+</html>
