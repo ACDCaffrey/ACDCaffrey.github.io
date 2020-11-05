@@ -1,8 +1,20 @@
 var data_orig = [];
+var data_orig2 = [];
 data_orig[0] = {x: 0, y: 0};
+data_orig2[0] = {x:0, y:0};
 for(var i = 0; i < 181; i++){
   data_orig[i] = {x: i, y: (Math.pow(10, 2) + 2*10*Math.cos(i*Math.PI/180) + 1)/Math.pow(10 + 1, 2)};
 }
+var part1 = 0;
+var ksi = 0;
+var numerator = Math.log(2000) - Math.log(0.000025)
+
+part1 = 1 + (Math.pow(10 - 1, 2)/(2*10))*Math.log((10-1)/(10+1));
+ksi = Math.round((part1)*10000)/10000;
+document.getElementById("neutrontable").rows[1].cells[0].innerHTML = ksi;
+var n = Math.round(numerator/ksi);
+document.getElementById("neutrontable").rows[1].cells[1].innerHTML = n;
+
 
 var svg = d3.select("#neutronapp")
             .classed("svg-container", true)
@@ -106,11 +118,13 @@ svg.append("rect")
       tooltip.attr("x", 70);
       tooltip.attr("y", 20);
       tooltip.select(".tooltiptext1").text("Angle: " + i + " Degrees");
-      tooltip.select(".tooltiptext2").text("Outgoing Gamma-ray Energy: " + d0 + " MeV");
+      tooltip.select(".tooltiptext2").text("Outgoing Neutron Energy: " + d0 + " MeV");
   }
 
 function updateneutronplot(event){
   var mass = document.getElementById("massinput").value;
+
+  if(mass <= 1){mass = 1};
 
   for(var i = 0; i < 181; i++){
     data_orig[i] = {x: i, y: (Math.pow(parseFloat(mass), 2) + 2*parseFloat(mass)*Math.cos(i*Math.PI/180) + 1)/Math.pow(parseFloat(mass) + 1, 2)}
@@ -124,4 +138,16 @@ function updateneutronplot(event){
       .x(function(d) {return x(d.x) + 70;})
       .y(function(d) {return y(d.y) + 20;}));
 
+}
+
+function updatetable(){
+  var mass2 = parseFloat(document.getElementById("massinput2").value);
+  part1 = 1 + (Math.pow(mass2 - 1, 2)/(2*mass2))*Math.log((mass2-1)/(mass2+1));
+  ksi = Math.round((part1)*10000)/10000;
+
+  var n = Math.round(numerator/part1);
+  if(mass2 == 1){ksi = 1; n = 18;}
+  if(mass2 <= 0){ksi = 0; n = 0;}
+  document.getElementById("neutrontable").rows[1].cells[0].innerHTML = ksi;
+  document.getElementById("neutrontable").rows[1].cells[1].innerHTML = n;
 }

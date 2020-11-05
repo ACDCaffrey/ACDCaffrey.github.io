@@ -1,11 +1,11 @@
 
 <html lang="en-GB">
 <head>
-  <title>Signal Timing</title>
+  <title>Neutron Moderation</title>
   <link rel="stylesheet" type="text/css" href="./stylesheet.css">
   <meta charset="UTF-8">
-  <meta name="description" content="Apps useful for undersanding gamma-ray ineracions">
-  <meta name="keywords" content="signal, nuclear instrumentation, timing, cfd">
+  <meta name="description" content="Apps useful for undersanding neutron moderation">
+  <meta name="keywords" content="neutron, nuclear instrumentation, interaction, moderation">
   <meta name="author" content="adamcaffrey">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -18,8 +18,8 @@
     <h1>Neutron Moderation App</h1>
 
     <p>
-      When a neutron scatters off a moderator atom with molecular mass 'n', energy is transferred from the incident neutron to the material.
-      The plot below visualises the share of energy as a function of scattering angle.
+      When a neutron scatters off a moderator with molecular mass '<b>A</b>', energy is transferred from the incident neutron to the material.
+      The plot below visualises the share of energy as a function of scattering angle for a neutron with an initial energy of 1 MeV.
     </p>
 
     <label for="massInput" style="font-family:sans-serif;">Moderator mass number:</label>
@@ -32,6 +32,68 @@
 
     <div id="neutronapptooltip"></div>
     <br><br>
+
+    <hr>
+
+    <br>
+
+    <p>The logarithmic energy decrement, &#11420;, is the average change in the natural logarithm of the neutron energy after an interaction.
+       The average loss of energy is proportional to the pre-collision energy.
+       As neutrons slow down, the energy loss per collision is correspondingly smaller.
+       The advantage of using &#11420; is that it is independent of the current neutron energy:
+    </p>
+
+    <div style="background-color: #eee; border: 1px solid black; width:40%; text-align: center; margin: auto;">
+      <p>
+        &#11420; = ln(E<sub>0</sub>/E<sub>1</sub>)
+        <br><br>
+        <b>E<sub>0</sub></b> - initial neutron energy
+        <br>
+        <b>E<sub>n</sub></b> - final neutron energy
+        <br>
+        <b>&#11420;</b> - logarithmic energy decrement
+      </p>
+    </div>
+
+    <p>
+       With each collision, the average value of <b>ln(E)</b> decreases by <b>&#11420;</b> and, after <b>n</b> collisions, the average value of <b>ln(E<sub>n</sub>)</b> is:
+    </p>
+
+    <div style="background-color: #eee; border: 1px solid black; width:40%; text-align: center; margin: auto;">
+      <p>
+        ln(E<sub>n</sub>) = ln(E<sub>0</sub>) - n&#11420;
+        <br>
+        where; &#11420; = 1 + ((A - 1)<sup>2</sup>/2A)ln((A - 1)/(A + 1))
+      </p>
+    </div>
+
+    <p>
+      <b>&#11420;</b> is dependens on the atomic mass, <b>A</b>, of the material in which the neutrons are being scattered. For a neutron with an initial energy of 1 MeV, the number of interactions for it to be thermalised (E<sub>n</sub> = 0.025 eV) can be determined using the interactive table below:
+    </p>
+
+    <br>
+
+    <label for="massInput2" style="font-family:sans-serif;">Moderator mass number:</label>
+    <input type="number" value = 10 id="massinput2" onchange="updatetable()" min="0" step="1">
+
+    <br><br>
+
+    <table id="neutrontable">
+      <tr>
+        <th style="width:80px;">&#11420;</th>
+        <th style="width:80px;">n</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <br><br>
+
+    <!-- <div id="neutronapp2"></div>
+    <br><br> -->
+
 
   </div>
 

@@ -170,6 +170,7 @@ svg.append("rect")
 
 function updatecomptonplot(event){
   var energy = document.getElementById("energyinput").value;
+  if(energy <= 1){energy = 1};
 
   for(var i = 0; i < 181; i++){
     data_orig[i] = {x: i, y: energy/(1 + (energy/511)*(1 - Math.cos(i*Math.PI/180)))}
@@ -291,6 +292,7 @@ xTick.append("text")
 
 function updatecomptonplot2(event){
   var energy = document.getElementById("energyinput2").value;
+  if(energy <= 1){energy = 1};
 
   for(var i = 0; i < 361; i++){
     theta = i*Math.PI/180;

@@ -11,6 +11,10 @@
   width: 80%;
 }
 
+#neutronapp2{
+  width: 80%;
+}
+
 .svg-container {
   display: inline-block;
   position: relative;
@@ -64,10 +68,24 @@
   #neutronapp{
     width: 100%;
   }
+  #neutronapp2{
+    width: 100%;
+  }
   #main_wrapper{
     font-size: 14px;
   }
   h1{
     font-size: 20px;
   }
+}
+
+table, th, td {
+  margin: auto;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td{
+  padding: 5px;
+  text-align: center;
 }
