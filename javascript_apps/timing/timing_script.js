@@ -5,6 +5,7 @@ var svg = d3.select("#pulseplot")
             .attr("viewBox", "0 0 690 380")
             .classed("svg-content-responsive", true);
 
+
 // Read the data
 d3.csv("./rfile.csv",
 
@@ -236,5 +237,220 @@ d3.csv("./rfile.csv",
     d3.select("#cfdstage3").on("click", function(d) {
       cfdstage3()
     })
+  }
+)
+
+var svg2 = d3.select("#pulseplot2")
+            .classed("svg-container", true)
+            .append("svg")
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("viewBox", "0 0 690 380")
+            .classed("svg-content-responsive", true);
+
+// Read the data
+d3.csv("./rfile.csv",
+
+  function(data) {
+
+    var delay = 50;
+
+    // Add X axis
+    var x = d3.scaleLinear()
+              .domain([0, 1260]) // axis limits
+              .range([ 0, 600 ]);
+
+    svg2.append("g")
+      .attr("transform", "translate(70," + 310 + ")") // x-axis shift
+      .call(d3.axisBottom(x));
+
+    // text label for the x axis
+    svg2.append("text")
+       .attr("transform",
+             "translate(" + 390 + " ," + 360 + ")")
+       .style("text-anchor", "middle")
+       .text("Time (ns)");
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+              .domain([0, 1.1]) // axis limits
+              .range([300, 0]);
+
+    yAxis2 = svg2.append("g")
+       .attr("transform", "translate(" + 70 + ",10)") // y-axis shift
+       .call(d3.axisLeft(y));
+
+    // text label for the y axis
+    svg2.append("text")
+        .attr("transform", "rotate(-90)") // vertical text
+        .attr("y", 10)
+        .attr("x", -150)
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Normalised Amplitude");
+
+    var data_early = [];
+    data_early[0] = {x: 0, y: 0};
+
+    var zero_line = [];
+    zero_line[0] = {x: 0, y: 0};
+
+    for(var i = delay; i < 1221; i++){
+      data_early[(i-delay)] = {x: (i-delay), y: data[i].y_500};
+      zero_line[(i-delay)] = {x: (i-delay), y: 0};
+    }
+
+    // Initialize line with group a
+    var line = svg2
+      .append('g')
+      .append("path")
+        .datum(data_early)
+        .attr("d", d3.line().curve(d3.curveStepAfter)
+          .x(function(d) { return x(d.x) + 70})
+          .y(function(d) { return y(d.y) + 10})
+        )
+        .attr("stroke", "steelblue")
+        .style("stroke-width", 1.5)
+        .style("fill", "none")
+
+    var line2 = svg2
+      .append('g')
+      .append("path")
+        .datum(zero_line)
+        .attr("d", d3.line().curve(d3.curveStepAfter)
+          .x(function(d) { return x(d.x) + 70})
+          .y(function(d) { return y(d.y) + 10})
+        )
+        .attr("stroke", "steelblue")
+        .style("stroke-dasharray", ("3, 3"))
+        .style("stroke-width", 1.5)
+        .style("fill", "none")
+
+    function reset2() {
+
+      y.domain([0,1.1])
+          yAxis2.transition().duration(1000).call(d3.axisLeft(y));
+
+      line
+        .datum(data_early)
+        .transition()
+        .duration(500)
+        .attr("d", d3.line().curve(d3.curveStepAfter)
+          .x(function(d) { return x(d.x) + 70 })
+          .y(function(d) { return y(d.y) + 10 })
+        )
+        .attr("stroke", "steelblue")
+
+      line2
+        .datum(zero_line)
+        .transition()
+        .duration(0)
+        .attr("d", d3.line().curve(d3.curveStepAfter)
+          .x(function(d) { return x(d.x) + 70 })
+          .y(function(d) { return y(d.y) + 10 })
+        )
+
+        document.getElementById("tcinfo").innerHTML = "";
+        document.getElementById("tcinfo").style.borderColor = "white";
+
+    }
+
+    function tcstage1() {
+
+      y.domain([0,0.6])
+          yAxis2.transition().duration(1000).call(d3.axisLeft(y));
+
+
+      console.log(data_early);
+      var cfd_stage1 = [];
+      cfd_stage1[0] = {x: 0, y: 0};
+
+      for(var i = 0; i < (1221-2*delay); i++){
+        cfd_stage1[i] = {x: i, y: data_early[i+delay].y - data_early[i].y}
+      }
+
+      console.log(cfd_stage1);
+
+      line
+        .datum(cfd_stage1)
+        .transition()
+        .duration(500)
+        .attr("d", d3.line().curve(d3.curveStepAfter)
+          .x(function(d) { return x(d.x) + 70 })
+          .y(function(d) { return y(d.y) + 10 })
+        )
+        .attr("stroke", "steelblue")
+
+      y.domain([0,0.05])
+          yAxis2.transition().duration(1000).call(d3.axisLeft(y));
+
+
+      line2
+        .datum(zero_line)
+        .transition()
+        .duration(100)
+        .attr("d", d3.line().curve(d3.curveStepAfter)
+          .x(function(d) { return x(d.x) + 70 })
+          .y(function(d) { return y(d.y) + 10 })
+        )
+
+        document.getElementById("tcinfo").innerHTML = "<b>TC Stage 1:</b> First, the signal is differentiated.";
+        document.getElementById("tcinfo").style.borderColor = "black";
+
+    }
+
+    function tcstage2(){
+
+      var cfd_stage1 = [];
+      cfd_stage1[0] = {x: 0, y: 0};
+      var cfd_stage2 = [];
+      cfd_stage2[0] = {x: 0, y: 0};
+
+      for(var i = 0; i < (1221-2*delay); i++){
+        cfd_stage1[i] = {x: i, y: data_early[i+delay].y - data_early[i].y}
+      }
+
+      for(var i = 1; i < (1221-3*delay); i++){
+        cfd_stage2[i] = {x: i, y: cfd_stage1[i+delay].y - cfd_stage1[i].y}
+      }
+
+      y.domain([-0.6,0.6])
+          yAxis2.transition().duration(1000).call(d3.axisLeft(y));
+
+      line
+        .datum(cfd_stage2)
+        .transition()
+        .duration(500)
+        .attr("d", d3.line().curve(d3.curveStepAfter)
+          .x(function(d) { return x(d.x) + 70 })
+          .y(function(d) { return y(d.y) + 10 })
+        )
+        .attr("stroke", "steelblue")
+
+        document.getElementById("tcinfo").innerHTML = "<b>TC Stage 2:</b> The signal is differentiated a second time. The point at which the signal crosses the baseline is independent of deposited energy.";
+        document.getElementById("tcinfo").style.borderColor = "black";
+
+      line2
+        .datum(zero_line)
+        .transition()
+        .duration(100)
+        .attr("d", d3.line().curve(d3.curveStepAfter)
+          .x(function(d) { return x(d.x) + 70 })
+          .y(function(d) { return y(d.y) + 10 })
+        )
+
+    }
+
+    d3.select("#resetbutton2").on("click", function(d) {
+      reset2()
+    })
+
+    d3.select("#tcstage1").on("click", function(d) {
+      tcstage1()
+    })
+
+    d3.select("#tcstage2").on("click", function(d) {
+      tcstage2()
+    })
+
   }
 )
