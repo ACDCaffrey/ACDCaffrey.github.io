@@ -1,0 +1,17 @@
+---
+title: "Data Sampling"
+author: "Adam Caffrey"
+date: "20/12/2020"
+output: html_document
+---
+
+```{r}
+library(tidymodels)
+data <- fread("./data/WA_Fn-UseC_-Telco-Customer-Churn.csv")
+```
+
+Sampling is 
+
+# Data Sampling
+
+# Data Re-sampling

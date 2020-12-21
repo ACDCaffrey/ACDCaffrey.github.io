@@ -1,0 +1,69 @@
+---
+title: "Machine Learning"
+author: "Adam Caffrey"
+date: "20/12/2020"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+---
+
+```{r setup, include=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(kableExtra)
+```
+
+This page is a simple overview of machine learning in R. It shall make use of the tidymodels libraries and is intended to be a personal reminder and help sheet for any new learners!
+
+The table below shows the libraries included with tidymodels and the methods most commonly used by me.
+
+```{r}
+col_a <- c("rsample", "parsnip", "recipes", "workflows", 
+           "tune", "yardstick", "broom", "dials", "corrr")
+col_b <- c("initial_split", "training", "testing",
+           "various parsnip",
+           "recipe", "step_<name>", "prep", "bake", "juice",
+           "add_recipe", "add_model",
+           "various tune",
+           "metrics", "roc_auc",
+           "tidy",
+           "various dials",
+           "corrr_stuff")
+```
+
+Additional useful libraries
+
+```{r}
+col_a <- c("corrplot")
+
+
+```
+
+# Machine Learning
+
+## Data Preprocessing
+
+To ensure the correct machine learning algorithm is applied, data must be thoroughly studied. In general you must ensure you deal with missingness correctly, identify trends, correctly encode factors and intelligently sample the data.
+
+[sampling](./sampling.html)
+
+```{r}
+
+```
+
+
+## Supervised
+
+
+```{r}
+
+```
+
+
+## Unsupervised
+
+```{r}
+
+```
+
