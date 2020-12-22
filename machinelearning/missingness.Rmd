@@ -1,0 +1,14 @@
+---
+title: "Missingness"
+author: "Adam Caffrey"
+date: "20/12/2020"
+output: html_document
+---
+
+```{r, include=FALSE}
+library(tidymodels)
+library(magrittr)
+data <- data.table::fread("./data/WA_Fn-UseC_-Telco-Customer-Churn.csv")
+```
+
+missing

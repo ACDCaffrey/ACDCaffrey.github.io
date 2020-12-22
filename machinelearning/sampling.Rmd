@@ -2,16 +2,58 @@
 title: "Data Sampling"
 author: "Adam Caffrey"
 date: "20/12/2020"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: show
 ---
 
-```{r}
+<script src="./script.js"></script>
+<link rel = "stylesheet" href = "stylesheet.css">
+
+```{r, include=FALSE}
 library(tidymodels)
-data <- fread("./data/WA_Fn-UseC_-Telco-Customer-Churn.csv")
+library(magrittr)
+data <- data.table::fread("./data/WA_Fn-UseC_-Telco-Customer-Churn.csv")
 ```
 
-Sampling is 
+Supervised machine learning techniques require data to be shared between a testing and training set. A model is generated from the data in the training set and the performance is characterised on application to the test set. 
+
+[Telco customer churn](https://www.kaggle.com/blastchar/telco-customer-churn) kaggle data was used in this tutorial.
 
 # Data Sampling
+
+Initially, data are separated into testing and training sets.
+
+```{r}
+set.seed(123)
+data_split <- initial_split(data, prop = 3/4)
+data_test <- testing(data_split)
+data_train <- training(data_split)
+```
+
+Two specialized methods to ensure the training and testing sets are proportionally representative of the initial data are stratified sampling and up/down sampling. To produce a higher fidelity model, training data can be further re-sampled and used to create a build
+
+## Stratified Sampling
+
+<div class="fold o">
+```{r}
+Hmisc::describe(data)
+```
+</div>
+
+```{r}
+data_test$PhoneService %>% 
+  Hmisc::describe()
+
+data_split <- initial_split(data, prop = 3/4, strata = PhoneService)
+data_test <- testing(data_split)
+
+data_test$PhoneService %>% 
+  Hmisc::describe()
+```
+
+## Upsampling and Downsampling
 
 # Data Re-sampling

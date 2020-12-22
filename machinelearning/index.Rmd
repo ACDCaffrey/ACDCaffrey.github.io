@@ -46,22 +46,39 @@ col_a <- c("corrplot")
 
 To ensure the correct machine learning algorithm is applied, data must be thoroughly studied. In general you must ensure you deal with missingness correctly, identify trends, correctly encode factors and intelligently sample the data.
 
+
+
+[missingness](./missingness.html)   
+
+correlations
+
 [sampling](./sampling.html)
 
 ```{r}
 
 ```
 
-
 ## Supervised
 
+what i'm looking at
+when to use each
+link to individuals
 
+linear regression
+logistic regression
+MARS
+KNN
+Random Forest
+Gradient Boosting
+Deep Learning
+SVM
 ```{r}
 
 ```
 
-
 ## Unsupervised
+
+clustering
 
 ```{r}
 
