@@ -1334,6 +1334,230 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+<script>$(document).ready(function(){
+    if (typeof $('[data-toggle="tooltip"]').tooltip === 'function') {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+    if ($('[data-toggle="popover"]').popover === 'function') {
+        $('[data-toggle="popover"]').popover();
+    }
+});
+</script>
+<style type="text/css">
+.lightable-minimal {
+border-collapse: separate;
+border-spacing: 16px 1px;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-minimal td {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal th {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal thead tr:last-child th {
+border-bottom: 2px solid #00000050;
+empty-cells: hide;
+}
+.lightable-minimal tbody tr:first-child td {
+padding-top: 0.5em;
+}
+.lightable-minimal.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-minimal.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic {
+border-top: 0.16em solid #111111;
+border-bottom: 0.16em solid #111111;
+width: 100%;
+margin-bottom: 10px;
+margin: 10px 5px;
+}
+.lightable-classic tfoot tr td {
+border: 0;
+}
+.lightable-classic tfoot tr:first-child td {
+border-top: 0.14em solid #111111;
+}
+.lightable-classic caption {
+color: #222222;
+}
+.lightable-classic td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic thead tr:last-child th {
+border-bottom: 0.10em solid #111111;
+}
+.lightable-classic.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic-2 {
+border-top: 3px double #111111;
+border-bottom: 3px double #111111;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-classic-2 tfoot tr td {
+border: 0;
+}
+.lightable-classic-2 tfoot tr:first-child td {
+border-top: 3px double #111111;
+}
+.lightable-classic-2 caption {
+color: #222222;
+}
+.lightable-classic-2 td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic-2 th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic-2 tbody tr:last-child td {
+border-bottom: 3px double #111111;
+}
+.lightable-classic-2 thead tr:last-child th {
+border-bottom: 1px solid #111111;
+}
+.lightable-classic-2.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic-2.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #EEE;
+border-collapse: collapse;
+margin-bottom: 10px;
+}
+.lightable-material tfoot tr td {
+border: 0;
+}
+.lightable-material tfoot tr:first-child td {
+border-top: 1px solid #EEE;
+}
+.lightable-material th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+}
+.lightable-material td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+border-top: 1px solid #eeeeee;
+}
+.lightable-material.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #ddd;
+}
+.lightable-material-dark {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #FFFFFF12;
+border-collapse: collapse;
+margin-bottom: 10px;
+background-color: #363640;
+}
+.lightable-material-dark tfoot tr td {
+border: 0;
+}
+.lightable-material-dark tfoot tr:first-child td {
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF60;
+}
+.lightable-material-dark td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF;
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark.lightable-hover tbody tr:hover {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody tr:nth-child(even) {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material-dark.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #FFFFFF12;
+}
+.lightable-paper {
+width: 100%;
+margin-bottom: 10px;
+color: #444;
+}
+.lightable-paper tfoot tr td {
+border: 0;
+}
+.lightable-paper tfoot tr:first-child td {
+border-top: 1px solid #00000020;
+}
+.lightable-paper thead tr:last-child th {
+color: #666;
+vertical-align: bottom;
+border-bottom: 1px solid #00000020;
+line-height: 1.15em;
+padding: 10px 5px;
+}
+.lightable-paper td {
+vertical-align: middle;
+border-bottom: 1px solid #00000010;
+line-height: 1.15em;
+padding: 7px 5px;
+}
+.lightable-paper.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-paper.lightable-striped tbody tr:nth-child(even) {
+background-color: #00000008;
+}
+.lightable-paper.lightable-striped tbody td {
+border: 0;
+}
+</style>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -1579,17 +1803,188 @@ div.tocify {
 
 <p>This page is a simple overview of machine learning in R. It shall make use of the tidymodels libraries and is intended to be a personal reminder and help sheet for any new learners!</p>
 <p>The table below shows the libraries included with tidymodels and the methods most commonly used by me.</p>
-<pre class="r"><code>col_a &lt;- c(&quot;rsample&quot;, &quot;parsnip&quot;, &quot;recipes&quot;, &quot;workflows&quot;, 
-           &quot;tune&quot;, &quot;yardstick&quot;, &quot;broom&quot;, &quot;dials&quot;, &quot;corrr&quot;)
-col_b &lt;- c(&quot;initial_split&quot;, &quot;training&quot;, &quot;testing&quot;,
-           &quot;various parsnip&quot;,
-           &quot;recipe&quot;, &quot;step_&lt;name&gt;&quot;, &quot;prep&quot;, &quot;bake&quot;, &quot;juice&quot;,
-           &quot;add_recipe&quot;, &quot;add_model&quot;,
-           &quot;various tune&quot;,
-           &quot;metrics&quot;, &quot;roc_auc&quot;,
-           &quot;tidy&quot;,
-           &quot;various dials&quot;,
-           &quot;corrr_stuff&quot;)</code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:100%; ">
+<table class=" lightable-paper" style="font-family: calibri; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Packages
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Methods
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;vertical-align: top !important;" rowspan="3">
+rsample
+</td>
+<td style="text-align:left;">
+initial_split
+</td>
+<td style="text-align:left;">
+Splits data into a testing and training set
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+training
+</td>
+<td style="text-align:left;">
+returns the training data set
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+testing
+</td>
+<td style="text-align:left;">
+returns the testing data set
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+parsnip
+</td>
+<td style="text-align:left;">
+various parsnip
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;vertical-align: top !important;" rowspan="5">
+recipes
+</td>
+<td style="text-align:left;">
+recipe
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+step_&lt;name&gt;
+</td>
+<td style="text-align:left;">
+b
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+prep
+</td>
+<td style="text-align:left;">
+c
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bake
+</td>
+<td style="text-align:left;">
+d
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+juice
+</td>
+<td style="text-align:left;">
+e
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;vertical-align: top !important;" rowspan="2">
+workflows
+</td>
+<td style="text-align:left;">
+add_recipe
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+add_model
+</td>
+<td style="text-align:left;">
+b
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+tune
+</td>
+<td style="text-align:left;">
+various tune
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;vertical-align: top !important;" rowspan="2">
+yardstick
+</td>
+<td style="text-align:left;">
+metrics
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+roc_auc
+</td>
+<td style="text-align:left;">
+b
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+broom
+</td>
+<td style="text-align:left;">
+tidy
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+dials
+</td>
+<td style="text-align:left;">
+various dials
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+corrr
+</td>
+<td style="text-align:left;">
+corrr_stuff
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Additional useful libraries</p>
 <pre class="r"><code>col_a &lt;- c(&quot;corrplot&quot;)</code></pre>
 <div id="machine-learning" class="section level1">
@@ -1598,16 +1993,16 @@ col_b &lt;- c(&quot;initial_split&quot;, &quot;training&quot;, &quot;testing&quo
 <h2>Data Preprocessing</h2>
 <p>To ensure the correct machine learning algorithm is applied, data must be thoroughly studied. In general you must ensure you deal with missingness correctly, identify trends, correctly encode factors and intelligently sample the data.</p>
 <p><a href="./missingness.html">missingness</a></p>
-<p>correlations</p>
+<p><a href="./correlation.html">correlations</a></p>
 <p><a href="./sampling.html">sampling</a></p>
 </div>
-<div id="supervised" class="section level2">
-<h2>Supervised</h2>
+<div id="supervised-learning" class="section level2">
+<h2>Supervised Learning</h2>
 <p>what i’m looking at when to use each link to individuals</p>
 <p>linear regression logistic regression MARS KNN Random Forest Gradient Boosting Deep Learning SVM</p>
 </div>
-<div id="unsupervised" class="section level2">
-<h2>Unsupervised</h2>
+<div id="unsupervised-learning" class="section level2">
+<h2>Unsupervised Learning</h2>
 <p>clustering</p>
 </div>
 </div>

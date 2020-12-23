@@ -1276,66 +1276,6 @@ window.buildTabsets = function(tocID) {
 };
 
 </script>
-<script>
-window.initializeCodeFolding = function(show) {
-
-  // handlers for show-all and hide all
-  $("#rmd-show-all-code").click(function() {
-    $('div.r-code-collapse').each(function() {
-      $(this).collapse('show');
-    });
-  });
-  $("#rmd-hide-all-code").click(function() {
-    $('div.r-code-collapse').each(function() {
-      $(this).collapse('hide');
-    });
-  });
-
-  // index for unique code element ids
-  var currentIndex = 1;
-
-  // select all R code blocks
-  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia, pre.foldable');
-  rCodeBlocks.each(function() {
-
-    // create a collapsable div to wrap the code in
-    var div = $('<div class="collapse r-code-collapse"></div>');
-    var showThis = (show || $(this).hasClass('fold-show')) && !$(this).hasClass('fold-hide');
-    if (showThis) div.addClass('in');
-    var id = 'rcode-643E0F36' + currentIndex++;
-    div.attr('id', id);
-    $(this).before(div);
-    $(this).detach().appendTo(div);
-
-    // add a show code button right above
-    var showCodeText = $('<span>' + (showThis ? 'Hide' : 'Code') + '</span>');
-    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
-    showCodeButton.append(showCodeText);
-    showCodeButton
-        .attr('data-toggle', 'collapse')
-        .attr('data-target', '#' + id)
-        .attr('aria-expanded', showThis)
-        .attr('aria-controls', id);
-
-    var buttonRow = $('<div class="row"></div>');
-    var buttonCol = $('<div class="col-md-12"></div>');
-
-    buttonCol.append(showCodeButton);
-    buttonRow.append(buttonCol);
-
-    div.before(buttonRow);
-
-    // update state of button on show/hide
-    div.on('hidden.bs.collapse', function () {
-      showCodeText.text('Code');
-    });
-    div.on('show.bs.collapse', function () {
-      showCodeText.text('Hide');
-    });
-  });
-
-}
-</script>
 <style type="text/css">.hljs-literal {
 color: #990073;
 }
@@ -1539,9 +1479,6 @@ summary {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
 
 
@@ -1631,14 +1568,6 @@ div.tocify {
 
 <div class="fluid-row" id="header">
 
-<div class="btn-group pull-right">
-<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu" style="min-width: 50px;">
-<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
-</ul>
-</div>
-
 
 
 <h1 class="title toc-ignore">Data Sampling</h1>
@@ -1706,18 +1635,19 @@ color: white;
 pre.plot {
 background-color: white !important;
 }</style></p>
-<p>Supervised machine learning techniques require data to be shared between a testing and training set. A model is generated from the data in the training set and the performance is characterised on application to the test set.</p>
-<p><a href="https://www.kaggle.com/blastchar/telco-customer-churn">Telco customer churn</a> kaggle data was used in this tutorial.</p>
-<div id="data-sampling" class="section level1">
-<h1>Data Sampling</h1>
+<p><a href="https://www.kaggle.com/blastchar/telco-customer-churn">Telco customer churn</a> data is used throughout this tutorial. The data describes customers using the telecommunications platform using features such as gender, whether or not they have paperless billing and if the customer has stopped subscribing (churn).</p>
+<p>Supervised machine learning techniques require data to be shared between a testing and training set. A model is generated from the data in the training set and its performance is characterised using the test set.</p>
 <p>Initially, data are separated into testing and training sets.</p>
 <pre class="r"><code>set.seed(123)
 data_split &lt;- initial_split(data, prop = 3/4)
 data_test &lt;- testing(data_split)
 data_train &lt;- training(data_split)</code></pre>
-<p>Two specialized methods to ensure the training and testing sets are proportionally representative of the initial data are stratified sampling and up/down sampling. To produce a higher fidelity model, training data can be further re-sampled and used to create a build</p>
+<p>The fraction of data in the training set must not be too large in order to avoid over-fitting. On the other hand, if the fraction is too small, you will obtain poor estimates of the model parameters. Typically, 75% training and 25% testing is a good bet - and is sufficient for the following examples. When a dataset is significantly large (thousands of observations with far fewer features) increasing the size of the training set will result in only minor model improvements. In such cases, the training set size can be reduced to decrease processing time.</p>
+<p>You must ensure the training data is representative of the initial dataset in order to build a generizable model. Generally, random sampling of the initial data is sufficient to achieve this. However, if an observation is infrequent (&lt; 10%), random sampling could result in its omission or artificially reduce its impact in the training process. Multiple methods exist to ensure the training data is representative. This page describes two such methods; <a href="#stratified-sampling">stratification</a> and <a href="#upsampling-and-downsampling">up/down sampling</a>.</p>
+<p>To produce a higher fidelity model, subsets of the training data can be used to build a model multiple times. This process is known as <a href="#data-resampling">resampling</a>.</p>
 <div id="stratified-sampling" class="section level2">
 <h2>Stratified Sampling</h2>
+<p>When exploring data it is important to note the number of responses in each category. One way to do this is using the <strong>describe</strong> method from the <strong>Hmisc</strong> library:</p>
 <div class="fold o">
 <pre class="r"><code>Hmisc::describe(data)</code></pre>
 <pre><code>## data 
@@ -1894,17 +1824,20 @@ data_train &lt;- training(data_split)</code></pre>
 ## Proportion 0.735 0.265
 ## --------------------------------------------------------------------------------</code></pre>
 </div>
-<pre class="r"><code>data_test$PhoneService %&gt;% 
-  Hmisc::describe()</code></pre>
+<p>Note the large deviation in observation values for the <em>PhoneService</em> feature:</p>
+<pre class="r"><code>data$PhoneService %&gt;% Hmisc::describe()</code></pre>
 <pre><code>## . 
 ##        n  missing distinct 
-##     1760        0        2 
+##     7043        0        2 
 ##                       
 ## Value         No   Yes
-## Frequency    189  1571
-## Proportion 0.107 0.893</code></pre>
-<pre class="r"><code>data_split &lt;- initial_split(data, prop = 3/4, strata = PhoneService)
+## Frequency    682  6361
+## Proportion 0.097 0.903</code></pre>
+<p>Less than 10% of the responses are <em>No</em>. Randomly sampling this feature may result in a training set containg few <em>No</em> responses and therefore impact the predicted model parameters.</p>
+<pre class="r"><code>set.seed(123)
+data_split &lt;- initial_split(data, prop = 3/4)
 data_test &lt;- testing(data_split)
+data_train &lt;- training(data_split)
 
 data_test$PhoneService %&gt;% 
   Hmisc::describe()</code></pre>
@@ -1913,15 +1846,55 @@ data_test$PhoneService %&gt;%
 ##     1760        0        2 
 ##                       
 ## Value         No   Yes
+## Frequency    189  1571
+## Proportion 0.107 0.893</code></pre>
+<pre class="r"><code>data_train$PhoneService %&gt;% 
+  Hmisc::describe()</code></pre>
+<pre><code>## . 
+##        n  missing distinct 
+##     5283        0        2 
+##                       
+## Value         No   Yes
+## Frequency    493  4790
+## Proportion 0.093 0.907</code></pre>
+<p>To ensure the training and test sets contain comparable distributions of observations you can employ stratified sampling. Stratification works by splitting the data into homogeneous groups based on the observations, known as strata. A sample of values is then taken from each stratum in an amount proportional to its size. The selected values are then pooled to produce the final, representative sample. Note the observation proportions are now very similar to the original:</p>
+<pre class="r"><code>data_split &lt;- initial_split(data, prop = 3/4, strata = PhoneService)
+data_test &lt;- testing(data_split)
+data_train &lt;- training(data_split)
+
+data$PhoneService %&gt;% 
+  Hmisc::describe()</code></pre>
+<pre><code>## . 
+##        n  missing distinct 
+##     7043        0        2 
+##                       
+## Value         No   Yes
+## Frequency    682  6361
+## Proportion 0.097 0.903</code></pre>
+<pre class="r"><code>data_test$PhoneService %&gt;% 
+  Hmisc::describe()</code></pre>
+<pre><code>## . 
+##        n  missing distinct 
+##     1760        0        2 
+##                       
+## Value         No   Yes
 ## Frequency    172  1588
 ## Proportion 0.098 0.902</code></pre>
+<pre class="r"><code>data_train$PhoneService %&gt;% 
+  Hmisc::describe()</code></pre>
+<pre><code>## . 
+##        n  missing distinct 
+##     5283        0        2 
+##                       
+## Value         No   Yes
+## Frequency    510  4773
+## Proportion 0.097 0.903</code></pre>
 </div>
 <div id="upsampling-and-downsampling" class="section level2">
 <h2>Upsampling and Downsampling</h2>
 </div>
-</div>
-<div id="data-re-sampling" class="section level1">
-<h1>Data Re-sampling</h1>
+<div id="data-resampling" class="section level1">
+<h1>Data Resampling</h1>
 </div>
 
 
@@ -1959,11 +1932,6 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
 
 <script>
 $(document).ready(function ()  {
