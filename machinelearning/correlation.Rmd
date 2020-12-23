@@ -1,0 +1,28 @@
+---
+title: "correlation"
+author: "Adam Caffrey"
+date: "21/12/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidymodels)
+library(magrittr)
+```
+
+```{r}
+iris %>% 
+  select_if(is.numeric) %>% 
+  drop_na() %>% 
+  cor() %>% 
+  corrplot::corrplot(type = "upper", 
+                     tl.col = "black")
+  
+```
+
+```{r}
+
+  
+  
+```
+

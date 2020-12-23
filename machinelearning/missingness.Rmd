@@ -11,4 +11,3 @@ library(magrittr)
 data <- data.table::fread("./data/WA_Fn-UseC_-Telco-Customer-Churn.csv")
 ```
 
-missing

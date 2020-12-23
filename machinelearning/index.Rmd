@@ -18,9 +18,16 @@ This page is a simple overview of machine learning in R. It shall make use of th
 
 The table below shows the libraries included with tidymodels and the methods most commonly used by me.
 
-```{r}
-col_a <- c("rsample", "parsnip", "recipes", "workflows", 
-           "tune", "yardstick", "broom", "dials", "corrr")
+```{r echo=FALSE}
+col_a <- c(rep("rsample", 3),
+           "parsnip", 
+           rep("recipes", 5),
+           rep("workflows", 2),
+           "tune", 
+           rep("yardstick", 2),
+           "broom", 
+           "dials", 
+           "corrr")
 col_b <- c("initial_split", "training", "testing",
            "various parsnip",
            "recipe", "step_<name>", "prep", "bake", "juice",
@@ -30,57 +37,56 @@ col_b <- c("initial_split", "training", "testing",
            "tidy",
            "various dials",
            "corrr_stuff")
+col_c <- c("Splits data into a testing and training set", 
+           "returns the training data set", 
+           "returns the testing data set",
+           "pending description",
+           "pending description", "pending description", "pending description", "pending description", "pending description",
+           "pending description", "pending description",
+           "pending description",
+           "pending description", "pending description",
+           "pending description",
+           "pending description",
+           "pending description")
+
+collapse_rows_dt <- data.frame("Packages" = col_a, "Methods" = col_b, "Description" = col_c)
+kbl(collapse_rows_dt, align = "l") %>%
+  collapse_rows(columns = 1:2, valign = "top") %>% 
+  kable_paper(full_width=T, html_font = "sans-serif") %>% 
+  scroll_box(width = "100%", height = "200px")
+  
+
 ```
+
 
 Additional useful libraries
 
-```{r}
+```{r echo=FALSE}
 col_a <- c("corrplot")
+col_b <- c("corrplot")
+col_c <- c("creates a pretty correlation plot")
 
+collapse_rows_dt <- data.frame("Packages" = col_a, "Methods" = col_b, "Description" = col_c)
+kbl(collapse_rows_dt, align = "l") %>%
+  collapse_rows(columns = 1:2, valign = "top") %>% 
+  kable_paper(full_width=T, html_font = "sans-serif") %>% 
+  scroll_box(width = "100%", height = "200px")
 
 ```
-
-# Machine Learning
 
 ## Data Preprocessing
 
-To ensure the correct machine learning algorithm is applied, data must be thoroughly studied. In general you must ensure you deal with missingness correctly, identify trends, correctly encode factors and intelligently sample the data.
+In order to determine which machine learning algorithm should be employed you must study your data! Creating tidy data is fundamental to machine learning. The following steps must be understood:
+
+1. [Dealing with missingness](./missingness.html)   
+2. [Correlations within data](./correlation.html)   
+3. [How sampling works](./sampling.html)
+
+## Supervised Learning
+
+Supervised machine learning requires labelled data...
+
+## Unsupervised Learning
 
 
-
-[missingness](./missingness.html)   
-
-correlations
-
-[sampling](./sampling.html)
-
-```{r}
-
-```
-
-## Supervised
-
-what i'm looking at
-when to use each
-link to individuals
-
-linear regression
-logistic regression
-MARS
-KNN
-Random Forest
-Gradient Boosting
-Deep Learning
-SVM
-```{r}
-
-```
-
-## Unsupervised
-
-clustering
-
-```{r}
-
-```
 

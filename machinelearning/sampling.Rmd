@@ -6,7 +6,7 @@ output:
   html_document:
     toc: true
     toc_float: true
-    code_folding: show
+
 ---
 
 <script src="./script.js"></script>
@@ -18,24 +18,28 @@ library(magrittr)
 data <- data.table::fread("./data/WA_Fn-UseC_-Telco-Customer-Churn.csv")
 ```
 
-Supervised machine learning techniques require data to be shared between a testing and training set. A model is generated from the data in the training set and the performance is characterised on application to the test set. 
+[Telco customer churn](https://www.kaggle.com/blastchar/telco-customer-churn) data is used throughout this tutorial. The data describes customers using the telecommunications platform using features such as gender, whether or not they have paperless billing and if the customer has stopped subscribing (churn).
 
-[Telco customer churn](https://www.kaggle.com/blastchar/telco-customer-churn) kaggle data was used in this tutorial.
-
-# Data Sampling
+Supervised machine learning techniques require data to be shared between a testing and training set. A model is generated from the data in the training set and its performance is characterised using the test set. 
 
 Initially, data are separated into testing and training sets.
 
-```{r}
+```{r eval=FALSE}
 set.seed(123)
 data_split <- initial_split(data, prop = 3/4)
 data_test <- testing(data_split)
 data_train <- training(data_split)
 ```
 
-Two specialized methods to ensure the training and testing sets are proportionally representative of the initial data are stratified sampling and up/down sampling. To produce a higher fidelity model, training data can be further re-sampled and used to create a build
+The fraction of data in the training set must not be too large in order to avoid over-fitting. On the other hand, if the fraction is too small, you will obtain poor estimates of the model parameters. Typically, 75% training and 25% testing is a good bet - and is sufficient for the following examples. When a dataset is significantly large (thousands of observations with far fewer features) increasing the size of the training set will result in only minor model improvements. In such cases, the training set size can be reduced to decrease processing time.
+
+You must ensure the training data is representative of the initial dataset in order to build a generizable model. Generally, random sampling of the initial data is sufficient to achieve this. However, if an observation is infrequent (< 10%), random sampling could result in its omission or artificially reduce its impact in the training process. Multiple methods exist to ensure the training data is representative. This page describes two such methods; [stratification][Stratified Sampling] and [up/down sampling][Upsampling and Downsampling]. 
+
+To produce a higher fidelity model, subsets of the training data can be used to build a model multiple times. This process is known as [resampling][Data Resampling]. 
 
 ## Stratified Sampling
+
+When exploring data it is important to note the number of responses in each category. One way to do this is using the **describe** method from the **Hmisc** library:
 
 <div class="fold o">
 ```{r}
@@ -43,17 +47,44 @@ Hmisc::describe(data)
 ```
 </div>
 
+Note the large deviation in observation values for the *PhoneService* feature:
+
 ```{r}
+data$PhoneService %>% Hmisc::describe()
+```
+
+Less than 10% of the responses are *No*. Randomly sampling this feature may result in a training set containg few *No* responses and therefore impact the predicted model parameters.
+
+```{r}
+set.seed(123)
+data_split <- initial_split(data, prop = 3/4)
+data_test <- testing(data_split)
+data_train <- training(data_split)
+
 data_test$PhoneService %>% 
   Hmisc::describe()
 
+data_train$PhoneService %>% 
+  Hmisc::describe()
+```
+
+To ensure the training and test sets contain comparable distributions of observations you can employ stratified sampling. Stratification works by splitting the data into homogeneous groups based on the observations, known as strata. A sample of values is then taken from each stratum in an amount proportional to its size. The selected values are then pooled to produce the final, representative sample. Note the observation proportions are now very similar to the original: 
+
+```{r}
 data_split <- initial_split(data, prop = 3/4, strata = PhoneService)
 data_test <- testing(data_split)
+data_train <- training(data_split)
+
+data$PhoneService %>% 
+  Hmisc::describe()
 
 data_test$PhoneService %>% 
+  Hmisc::describe()
+
+data_train$PhoneService %>% 
   Hmisc::describe()
 ```
 
 ## Upsampling and Downsampling
 
-# Data Re-sampling
+# Data Resampling
