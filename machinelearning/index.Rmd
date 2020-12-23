@@ -58,6 +58,7 @@ kbl(collapse_rows_dt, align = "l") %>%
 
 ```
 
+***
 
 Additional useful libraries
 

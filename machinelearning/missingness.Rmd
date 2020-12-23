@@ -2,12 +2,43 @@
 title: "Missingness"
 author: "Adam Caffrey"
 date: "20/12/2020"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
 ---
 
 ```{r, include=FALSE}
-library(tidymodels)
+library(visdat)
 library(magrittr)
-data <- data.table::fread("./data/WA_Fn-UseC_-Telco-Customer-Churn.csv")
+library(dplyr)
+set.seed(123)
+data <- iris
+# row_remove <- sample(nrow(data), replace = T, size = 50)
+# col_remove <- sample(ncol(data), replace = T, size = 50)
+# df <- data.frame(row_remove, col_remove)
+# 
+# data[row_remove, col_remove] <- NA
 ```
 
+Real-word data is never perfect, you will frequently encounter missing observations. Sometimes a missing value can be informative. Consider a pair of conditional features; asking someone "if they had lunch" and "what they ate for lunch". Missing observations will be found in the food column whenever lunch was not eaten. In this case, the missing data can be re-categorised to "None" and input into the training process. The second category of missing data is less useful, random missingness. This could result from any number of reasons.
+
+Some machine learning algorithms accommodate missing values, such as models decision trees, but many do not (linear regression etc.). You will need to decide how to deal with these values. Two options are available; removal and imputation.
+
+To begin dealing with missing values, you must first visualise them. This page will make use of the **iris** dataset, from the R **datasets** library, with observations randomly removed.
+
+# Visualising missing data
+
+
+
+
+
+
+
+
+
+# Removing missing values
+
+
+# Imputation
