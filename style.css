@@ -55,7 +55,7 @@ body{
 
 .bg-img {
     background-size: contain;
-    width:95%;
+    width:100%;
     background-repeat:no-repeat;
     height: 15em;
     background-position: center;

@@ -1,0 +1,94 @@
+---
+title: "logistic_regression"
+author: "Adam Caffrey"
+date: "28/12/2020"
+output: html_document
+---
+
+```{r, include=FALSE}
+library(tidymodels)
+library(magrittr)
+data <- data.table::fread("./data/WA_Fn-UseC_-Telco-Customer-Churn.csv",
+                          stringsAsFactors = T)
+set.seed(123)
+```
+
+```{r}
+glimpse(data)
+```
+
+```{r}
+any(is.na(data))
+```
+
+```{r}
+visdat::vis_miss(data)
+```
+
+
+```{r}
+data <- data %>% 
+  drop_na()
+```
+
+```{r}
+Hmisc::describe(data)
+```
+
+```{r}
+data %>% 
+  select_if(is.numeric) %>% 
+  cor %>% 
+  corrplot::corrplot(type = "upper", 
+                     tl.col = "black")
+```
+
+
+```{r}
+data_split <- initial_split(data, prop = 3/4, strata = PhoneService)
+data_train <- training(data_split)
+data_test <- testing(data_split)
+
+data_cv <- rsample::vfold_cv(data_train)
+```
+
+```{r}
+lr_recipe <- recipe(Churn ~ ., data_test) %>% 
+  step_dummy(all_nominal(), -all_outcomes())
+```
+
+```{r}
+lr_model <- 
+  logistic_reg() %>% 
+  set_engine("glmnet")
+
+```
+
+```{r}
+lr_wf <- 
+  workflow() %>% 
+  add_model(lr_model) %>% 
+  add_recipe(lr_recipe)
+
+```
+
+```{r}
+lr_fit <- fit_resamples(lr_wf, resamples = data_cv)
+```
+
+```{r}
+res <- 
+  lr_wf %>% 
+  fit(data_train)
+```
+
+
+
+```{r}
+res <- 
+  lr_wf %>% 
+    tune::tune_grid(resamples = data_cv,
+                    grid = 10,
+                    metrics = yardstick::metric_set(yardstick::accuracy))
+```
+

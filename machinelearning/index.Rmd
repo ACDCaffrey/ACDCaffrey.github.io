@@ -87,7 +87,9 @@ In order to determine which machine learning algorithm should be employed you mu
 
 Supervised machine learning requires labelled data...
 
+
+
 ## Unsupervised Learning
 
-
-
+***
+[Additional Resources](./resources.html)
