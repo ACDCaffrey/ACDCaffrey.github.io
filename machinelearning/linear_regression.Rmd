@@ -1,0 +1,57 @@
+---
+title: "linear_regression"
+author: "Adam Caffrey"
+date: "30/12/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+library(tidymodels)
+```
+
+```{r}
+data <- iris
+```
+
+```{r}
+glimpse(data)
+```
+
+```{r}
+data_split <- initial_split(data, prop = 3/4)
+data_train <- training(data_split)
+data_test <- testing(data_split)
+```
+
+```{r}
+lr_model <- 
+  linear_reg() %>% 
+  set_engine("lm")
+```
+
+```{r}
+lr_recipe <- recipe(Sepal.Length ~ ., data_train) %>% 
+  step_dummy(all_nominal())
+```
+
+```{r}
+lr_wf <- 
+  workflow() %>% 
+  add_model(lr_model) %>% 
+  add_recipe(lr_recipe)
+```
+
+```{r}
+lr_fit <- lr_wf %>% fit(data_train)
+```
+
+```{r}
+lr_pred <- predict(lr_fit, new_data = data_test)
+```
+
+```{r}
+data.frame("predict" = lr_pred, "actual" = data_test$Sepal.Length)
+```
+
