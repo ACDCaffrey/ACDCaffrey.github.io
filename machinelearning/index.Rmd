@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(kableExtra)
 ```
 
-This page is a simple overview of machine learning in R. It shall make use of the tidymodels libraries and is intended to be a personal reminder and help sheet for any new learners!
+This is a simple overview of machine learning in R. It shall make use of the tidymodels libraries and is intended to be a personal reminder and help sheet for any new learners. I intend to continuously improve the site over time as I better learn the features of tidymodels!
 
 The table below shows the libraries included with tidymodels and the methods most commonly used by me.
 
@@ -82,6 +82,10 @@ In order to determine which machine learning algorithm should be employed you mu
 1. [Dealing with missingness](./missingness.html)   
 2. [Correlations within data](./correlation.html)   
 3. [How sampling works](./sampling.html)
+
+## Other Useful Concepts
+
+1. [Parallel Processing](./parallel_processing.html)
 
 ## Supervised Learning
 

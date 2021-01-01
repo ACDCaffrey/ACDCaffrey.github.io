@@ -20,9 +20,7 @@ iris %>%
   
 ```
 
-```{r}
-
-  
-  
+```{r message=FALSE}
+GGally::ggpairs(iris, aes(colour = Species))
 ```
 

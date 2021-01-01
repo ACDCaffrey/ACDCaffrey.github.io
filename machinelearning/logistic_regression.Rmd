@@ -25,10 +25,10 @@ any(is.na(data))
 visdat::vis_miss(data)
 ```
 
-
 ```{r}
 data <- data %>% 
-  drop_na()
+  drop_na() %>% 
+  select(-customerID)
 ```
 
 ```{r}
@@ -43,7 +43,6 @@ data %>%
                      tl.col = "black")
 ```
 
-
 ```{r}
 data_split <- initial_split(data, prop = 3/4, strata = PhoneService)
 data_train <- training(data_split)
@@ -53,44 +52,31 @@ data_cv <- rsample::vfold_cv(data_train)
 ```
 
 ```{r}
-lr_recipe <- recipe(Churn ~ ., data_test) %>% 
-  step_dummy(all_nominal(), -all_outcomes())
+lr_recipe <- recipe(Churn ~ ., data_train) %>% 
+  step_dummy(all_nominal(), -all_outcomes()) %>% 
+  step_nzv(all_numeric())
 ```
 
 ```{r}
 lr_model <- 
-  logistic_reg() %>% 
+  logistic_reg(mode = "classification") %>% 
   set_engine("glm")
-
 ```
 
 ```{r}
 lr_wf <- 
   workflow() %>% 
   add_model(lr_model) %>% 
-  add_recipe(lr_recipe) %>% 
-  fit(data_train) %>% 
-  predict(data_test)
+  add_recipe(lr_recipe)
+```
 
+```{r message=FALSE}
+lr_fit_cv <- fit_resamples(lr_wf, resamples = data_cv)
 ```
 
 ```{r}
-lr_fit <- fit_resamples(lr_wf, resamples = data_cv)
+collect_metrics(lr_fit_cv)
 ```
 
-```{r}
-res <- fit(lr_wf, data = data_train)
-```
 
-```{r}
-pred <- predict(res, new_data = data_test)
-```
-
-```{r}
-res <- 
-  lr_wf %>% 
-    tune::tune_grid(resamples = data_cv,
-                    grid = 10,
-                    metrics = yardstick::metric_set(yardstick::accuracy))
-```
 
