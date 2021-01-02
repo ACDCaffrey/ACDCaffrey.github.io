@@ -1,0 +1,48 @@
+---
+title: "Model Performance"
+author: "Adam Caffrey"
+date: "01/01/2021"
+output: html_document
+---
+
+<link rel = "stylesheet" href = "stylesheet.css">
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+There are several metrics available when evaluating the performance of a model. This page aims to aggregate the options and help you decide what to use:
+
+## Mean Squared Error (MSE)
+
+The mean squared error (MSE) describes the average squared difference between the actual and predicted values. The root mean squared error (RMSE) is the square root of this value. RMSE benefits from being in the same units as the response value (not squared). In each case larger differences are penalised more (squared term) and this metric should be minimized for an optimum model.
+
+<div class="equationbox">
+$MSE = \frac{1}{n}\sum_{i=1}^{n}\left(y_i - \hat{y_i}\right)^2$
+<br><br>
+$RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}\left(y_i - \hat{y_i}\right)^2}$
+</div>
+
+## MAE
+
+<div class="equationbox">
+$MAE = \frac{1}{n}\sum_{i=1}^{n}\left(|y_i - \hat{y_i}|\right)$
+</div>
+
+## RMSLE
+
+<div class="equationbox">
+$RMSLE = \sqrt{\frac{1}{n}\sum_{i=1}^n\left(log\left(y_i + 1\right) - log\left(\hat{y}_i + 1\right)\right)^2}$
+</div>
+
+## R^2^
+
+## Confusion Matrix
+
+## AUC
+
+## P-Value
+
+## T-Test
+
+## Z-Value

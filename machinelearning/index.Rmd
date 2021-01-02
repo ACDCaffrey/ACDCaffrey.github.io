@@ -85,13 +85,15 @@ In order to determine which machine learning algorithm should be employed you mu
 
 ## Other Useful Concepts
 
-1. [Parallel Processing](./parallel_processing.html)
+1. [Parallel Processing](./parallel_processing.html)   
+2. [Metrics](./model_performance.html)
 
 ## Supervised Learning
 
 Supervised machine learning requires labelled data...
 
-1. [Logistic Regression](./logistic_regression.html)   
+1. [Linear Regression](./linear_regression.html)
+2. [Logistic Regression](./logistic_regression.html)   
 
 
 ## Unsupervised Learning

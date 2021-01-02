@@ -11,13 +11,19 @@ library(magrittr)
 library(tidymodels)
 ```
 
+Linear regression is the simplest machine learning concept one should know, I will use the iris dataset as give a quick example:
+
 ```{r}
 data <- iris
 ```
 
+The data consists of 5 columns, 4 numeric and 1 nominal. For this example I shall create a linear model to predict the petal length:
+
 ```{r}
 glimpse(data)
 ```
+
+Data is first split into a testing and training set using the rsample package: 
 
 ```{r}
 data_split <- initial_split(data, prop = 3/4)
@@ -25,16 +31,22 @@ data_train <- training(data_split)
 data_test <- testing(data_split)
 ```
 
+A linear model is selected from the **lm** package:
+
 ```{r}
 lr_model <- 
   linear_reg() %>% 
   set_engine("lm")
 ```
 
+and a simple recipe is produced
+
 ```{r}
-lr_recipe <- recipe(Sepal.Length ~ ., data_train) %>% 
+lr_recipe <- recipe(Petal.Length ~ ., data_train) %>% 
   step_dummy(all_nominal())
 ```
+
+The workflow combines the model and recipe
 
 ```{r}
 lr_wf <- 
@@ -43,15 +55,25 @@ lr_wf <-
   add_recipe(lr_recipe)
 ```
 
+And the data is fit:
+
 ```{r}
-lr_fit <- lr_wf %>% fit(data_train)
+lr_fit <- last_fit(lr_wf, data_split)
+```
+
+
+```{r}
+collect_metrics(lr_fit)
 ```
 
 ```{r}
-lr_pred <- predict(lr_fit, new_data = data_test)
+collect_predictions(lr_fit)
 ```
 
 ```{r}
-data.frame("predict" = lr_pred, "actual" = data_test$Sepal.Length)
+data %>% 
+  select_if(is.numeric) %>% 
+  cor %>% 
+  corrplot::corrplot(type = "upper",
+                     tl.col = "black")
 ```
-
