@@ -75,7 +75,7 @@ The [performance](./model_performance.html) of linear models are typically grade
 pred %>%  metrics(truth = truth, estimate = .pred)
 ```
 
-A more intuitive visualisation can be obtained by plotting the predicted values against the actual values [left]. The diagonal line has a slope of 1 indicating an exact match. A good match is found between predicted and actual values. Additionally, linear regression requires homoscedasticity (constant variance amongst errors). This behaviour is displayed in below [right] though few data points are available to be conclusive.
+A more intuitive visualisation can be obtained by plotting the predicted values against the actual values [left]. The diagonal line has a slope of 1 indicating an exact match. A good match is found between predicted and actual values. Additionally, linear regression requires homoscedasticity (constant variance amongst errors). This behaviour is displayed below [right] though few data points are available to be conclusive.
 
 ```{r fig.align="center", fig.width=8, fig.height=4}
 ggplt1 <- 
