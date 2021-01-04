@@ -1,0 +1,15 @@
+---
+title: "Resources"
+author: "Adam Caffrey"
+date: "28/12/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+[Tidy Modelling with R](https://www.tmwr.org/)   
+[Hands-On Machine Learning with R](https://bradleyboehmke.github.io/HOML/)   
+[An R Platform for Social Scientists](https://bookdown.org/burak2358/SARP-EN/)   
+[Learn purrr](http://www.rebeccabarter.com/blog/2019-08-19_purrr/)
