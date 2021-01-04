@@ -1,7 +1,7 @@
 ---
-title: "linear_regression"
+title: "Simple Linear Regression"
 author: "Adam Caffrey"
-date: "30/12/2020"
+date: "04/01/2021"
 output: html_document
 ---
 
@@ -11,15 +11,15 @@ library(magrittr)
 library(tidymodels)
 ```
 
-Linear regression is the simplest machine learning concept one should know, I will use the iris dataset as give a quick example:
+Linear regression is the simplest machine learning concept one should know. On this page, I use linear regression to estimate the length of petals using the famous iris dataset and in doing so will layout the typical machine learning workflow. 
 
 ```{r}
 data <- iris
 ```
 
-The data consists of 5 columns, 4 numeric and 1 nominal. For this example I shall create a linear model to predict the petal length:
+The data consists of 5 columns, 4 numeric and 1 nominal. For this example I shall create a linear model to predict the petal length from the petal width. No data is missing and no cleaning is necessary for this dataset.
 
-```{r}
+```{r fig.align="center"}
 glimpse(data)
 ```
 
@@ -31,7 +31,7 @@ data_train <- training(data_split)
 data_test <- testing(data_split)
 ```
 
-A linear model is selected from the **lm** package:
+A linear model is selected from the **lm** library...
 
 ```{r}
 lr_model <- 
@@ -39,14 +39,13 @@ lr_model <-
   set_engine("lm")
 ```
 
-and a simple recipe is produced
+...and a very simple recipe is produced.
 
 ```{r}
-lr_recipe <- recipe(Petal.Length ~ ., data_train) %>% 
-  step_dummy(all_nominal())
+lr_recipe <- recipe(Petal.Length ~ Petal.Width, data_train)
 ```
 
-The workflow combines the model and recipe
+A workflow object is used to combine the model and recipe. This also removes the need to **prep** and **bake** the recipe:
 
 ```{r}
 lr_wf <- 
@@ -55,25 +54,62 @@ lr_wf <-
   add_recipe(lr_recipe)
 ```
 
-And the data is fit:
+The **fit** method then uses the training data to establish a model. The **lr_fit** object contains the model coefficients. 
 
 ```{r}
-lr_fit <- last_fit(lr_wf, data_split)
+(lr_fit <- fit(lr_wf, data_train))
 ```
 
+Using this model we can now predict the length of petals using the test data. 
 
-```{r}
-collect_metrics(lr_fit)
+```{r fig.align="center"}
+(pred <- predict(lr_fit, data_test) %>% 
+  select(.pred) %>% 
+  bind_cols(., "truth" = data_test$Petal.Length, 
+            "resid" = data_test$Petal.Length - .$.pred))
 ```
 
-```{r}
-collect_predictions(lr_fit)
+The [performance](./model_performance.html) of linear models are typically graded using rmse, rsq and mae values. These are obtained using the **metrics** method. 
+
+```{r fig.align="center"}
+pred %>%  metrics(truth = truth, estimate = .pred)
 ```
 
-```{r}
-data %>% 
-  select_if(is.numeric) %>% 
-  cor %>% 
-  corrplot::corrplot(type = "upper",
-                     tl.col = "black")
+A more intuitive visualisation can be obtained by plotting the predicted values against the actual values [left]. The diagonal line has a slope of 1 indicating an exact match. A good match is found between predicted and actual values. Additionally, linear regression requires homoscedasticity (constant variance amongst errors). This behaviour is displayed in below [right] though few data points are available to be conclusive.
+
+```{r fig.align="center", fig.width=8, fig.height=4}
+ggplt1 <- 
+  ggplot(data = pred, aes(x = .pred, y = truth)) +
+    geom_point() +
+    geom_abline(slope = 1, col = "red") +
+    theme_linedraw() +
+    labs(x = "Predicted Value", y = "Actual Value") +
+    lims(x = c(0,9), y = c(0,8))
+
+ggplt2 <- 
+  ggplot(data = pred, aes(x = .pred, y = resid)) +
+    geom_point() +
+    geom_abline(slope = 0, intercept = 0, col = "red") +
+    theme_linedraw() +
+    labs(x = "Predicted Value", y = "Residuals") +
+    lims(x = c(0,9), y = c(-2,2))
+
+gridExtra::grid.arrange(ggplt1, ggplt2, nrow = 1)
+
 ```
+
+This simple introduction to linear regression highlights the following tidymodels concepts:   
+1. workflow objects   
+2. recipe creation   
+3. model selection   
+4. data fitting   
+5. data prediction
+6. model evaluation     
+
+
+
+
+
+
+
+#
