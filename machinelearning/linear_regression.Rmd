@@ -107,6 +107,11 @@ This simple introduction to linear regression highlights the following tidymodel
 6. model evaluation     
 
 
+## Meta
+
+```{r}
+sessionInfo()
+```
 
 
 
