@@ -1,0 +1,53 @@
+---
+title: "SUM, AVERAGE, COUNT, MIN and MAX"
+author: "Adam Caffrey"
+date: "06/01/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(sqldf)
+```
+
+This demo will use the **iris** dataset.
+
+When selecting data, aggregated output can be returned. The most common aggregation functions are: SUM, AVERAGE, COUNT, MIN and MAX.   
+
+**Example 1:** What is the sum of all the petal widths?
+
+```{r}
+sqldf("
+  SELECT SUM(`Petal.Width`) FROM iris;      
+")
+```
+**Example 2:** What is the average sepal length?
+
+```{r}
+sqldf("
+  SELECT AVG(`Sepal.Length`) FROM iris;      
+")
+```
+**Example 3:** How many rows are in the iris dataset?
+
+```{r}
+sqldf("
+  SELECT COUNT(Species) FROM iris  
+")
+```
+**Example 4:** What is the smallest petal length?
+
+```{r}
+sqldf("
+  SELECT MIN(`Petal.Length`) FROM iris;      
+")
+```
+**Example 5:** How long is the longest petal?
+
+```{r}
+sqldf("
+  SELECT MAX(`Petal.Length`) FROM iris;      
+")
+```
+
+All functions are relatively easy to implement, the difficulty is realising when you should be using each!

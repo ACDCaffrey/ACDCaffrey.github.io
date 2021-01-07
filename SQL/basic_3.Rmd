@@ -1,0 +1,103 @@
+---
+title: "ORDER BY, DISTINCT and WHERE"
+author: "Adam Caffrey"
+date: "06/01/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(sqldf)
+library(kableExtra)
+```
+
+This demo will use the **iris** dataset.
+
+This page shall incorporate the additional filtering statements ORDER BY, DISTINCT and WHERE on top of the already-established SQL commands.   
+
+ORDER BY allows output to be ordered by ascending (ASC) or descending (DESC), based on one feature or multiple. 
+
+**Example:** What are the top ten longest petal lengths in the iris dataset?   
+
+```{r}
+sqldf("
+  SELECT `Petal.Length` FROM iris
+  ORDER BY `Petal.Length` DESC
+  LIMIT 10;
+")
+```
+**Example:** What are the species of the three shortest sepal widths?
+
+```{r}
+sqldf("
+  SELECT Species FROM iris
+  ORDER BY `Sepal.Width` ASC
+  LIMIT 3;
+")
+```
+
+Distinct is used when you want to return unique values, it is one of the most often-used statements:
+
+**Example:** What iris species exist in the iris dataset?
+
+```{r}
+sqldf("SELECT DISTINCT Species FROM iris;")
+```
+
+**Example:** What are 10 unique combinations of iris species and petal lengths ordered by the longest sepals?
+
+```{r}
+sqldf("
+  SELECT DISTINCT Species, `Petal.Length` FROM  iris
+  ORDER BY `Sepal.Length` DESC
+  LIMIT 10;
+")
+```
+
+Finally, where allows you to set conditionals. The syntax for this are as follows:   
+```{r, echo=FALSE}
+col1 <- c("=", ">", "<", ">=", "<=", "<>")
+col2 <- c("Equal", "Greater than", "Less than", "Greater than or equal to", "Less than or equal to", "Not equal to")
+
+data.frame(col1, col2) %>% 
+  kable(col.names = c("Symbol", "Description")) %>% 
+  kable_styling(full_width = F)
+  
+  
+```
+
+The WHERE statement gives you a lot of control over your data. This statement allows much more complicated questions be answered.
+
+**Example:** What are the species and petal lengths of iris' which have petal widths greater than 1.5?
+
+
+```{r}
+sqldf("
+  SELECT Species, `Petal.Width` FROM iris
+  WHERE `Petal.Width` > 2.2;
+")
+```
+
+
+**Example:** How many data points have a petal width of exactly 2?
+
+```{r}
+sqldf("
+  SELECT COUNT(Species) FROM iris
+  WHERE `Petal.Width` = 2;
+")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+#

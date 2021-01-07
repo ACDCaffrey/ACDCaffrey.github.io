@@ -1,0 +1,21 @@
+---
+title: "SQL Home"
+author: "Adam Caffrey"
+date: "06/01/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This page aims to validate my proficiency my mySQL. Code will be executed using the **[sqldf](https://github.com/ggrothendieck/sqldf#Overview)** library. 
+
+## Basic SQL
+
+1. [SELECT, FROM and LIMIT](./basic_1.html)   
+2. [SUM, AVERAGE, COUNT, MIN and MAX](./basic_2.html)   
+3. [ORDER BY, DISTINCT and WHERE](./basic_3.html)     
+
+## Adanced SQL
+

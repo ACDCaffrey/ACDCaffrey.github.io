@@ -1,0 +1,51 @@
+---
+title: "SELECT, FROM and LIMIT"
+author: "Adam Caffrey"
+date: "06/01/2021"
+output: html_document
+---
+
+<script src="./script.js"></script>
+<link rel = "stylesheet" href = "stylesheet.css">
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(sqldf)
+```
+
+This demo will use the **iris** dataset.
+
+The SELECT statement is used to retrieve data from a table. In its simplest form, without a table, it will return what you pass it:
+
+```{r}
+sqldf("
+  SELECT 1 + 5;
+")
+```
+
+As a general rule, you will want to SELECT data FROM a table. If no table is present then, for MySQL, it is good practice to use DUAL as a dummy table. If you do have a table, an individual column (field) can be selected. Selecting the Species column from the iris dataset:
+
+<div class="fold o">
+```{r}
+sqldf("
+  SELECT Species FROM iris;
+")
+```
+</div>
+
+That is a lot of output! This is where the LIMIT statement comes in. You can LIMIT the number of entries returned:
+
+```{r}
+sqldf("
+  SELECT Species FROM iris LIMIT 5;      
+")
+```
+
+Multiple columns can be selected at once but the same number of entries must be returned for each. When a field name contains a "." the name must be surrounded by `, " or []:
+
+```{r}
+sqldf("
+  SELECT `Petal.Length`, Species FROM iris LIMIT 8;      
+")
+```
+

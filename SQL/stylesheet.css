@@ -1,0 +1,29 @@
+.showopt {
+  background-color: white;
+  color: #404040; 
+  width: 90px;
+  height: 18px;
+  text-align: center;
+  margin: auto;
+  float: right;
+  font-family: sans-serif;
+  border-radius: 4px;
+  border: solid 1px #bbb;
+  font-size: 12px;
+}
+
+.showopt:hover {
+    background-color: #404040;
+    color: white;
+}
+
+pre.plot {
+  background-color: white !important;
+}
+
+.equationbox{
+  border: black 1px solid;
+  background-color: #e6efff;
+  text-align: center;
+  padding: 5%;
+}
