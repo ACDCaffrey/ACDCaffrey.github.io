@@ -1,9 +1,12 @@
 ---
-title: "logistic_regression"
+title: "Logistic Regression"
 author: "Adam Caffrey"
 date: "28/12/2020"
 output: html_document
 ---
+
+<script src="./script.js"></script>
+<link rel = "stylesheet" href = "stylesheet.css">
 
 ```{r, include=FALSE}
 library(tidymodels)
@@ -13,70 +16,165 @@ data <- data.table::fread("./data/WA_Fn-UseC_-Telco-Customer-Churn.csv",
 set.seed(123)
 ```
 
+Logistic regression is analogues to linear regression for binary outcomes. In this example I will estimate whether a customer churned (yes/no) depending on a set of predictors. The dataset used is from [kaggle](https://www.kaggle.com/blastchar/telco-customer-churn), describing Telco Customer Churn.
+
 ```{r}
 glimpse(data)
 ```
 
-```{r}
-any(is.na(data))
-```
+This data contains 11 NA values.
 
 ```{r}
+any(is.na(data))
+is.na(data) %>% sum
+```
+
+```{r fig.align="center", fig.width= 9}
 visdat::vis_miss(data)
 ```
+   
+Upon further inspection, all these NA values are found in the TotalCharges column. The total charges are undefined when the tenure (number of months the customer has been with the company) is zero.
+
+```{r}
+data %>% 
+  filter(is.na(TotalCharges)) %>% 
+  DT::datatable(class = 'cell-border stripe',
+                rownames = FALSE,
+                options = list(dom = 'tp', 
+                               scrollX = TRUE,
+                               pageLength = 6,
+                               autoWidth = TRUE,
+                               columnDefs = list(list(className = "dt-center", targets = 0:20))))
+```
+These are the only zero tenure values in the entire dataset. The missingness is therefore informative and can be replaced with zero values.
+
+```{r}
+data <- mutate(data, TotalCharges=replace(TotalCharges, is.na(TotalCharges), 0)) 
+```
+
+The customer ID column is a unique identifier which is not used in the prediction process, it is therefore removed from the data. 
 
 ```{r}
 data <- data %>% 
-  drop_na() %>% 
   select(-customerID)
 ```
 
+Here is a complete rundown of the data, the phone service factor has a large imbalance.
+
+<div class="fold o">
 ```{r}
 Hmisc::describe(data)
 ```
+</div>
 
-```{r}
+Next, the numeric data is reviewed using a correlation table. A strong positive correlation between the monthly and total charges is shown -  the more monthly charges, the more the total cost. More interestingly though, senior citizen and tenure shows no correlation. 
+
+```{r fig.align="center"}
 data %>% 
   select_if(is.numeric) %>% 
   cor %>% 
   corrplot::corrplot(type = "upper", 
-                     tl.col = "black")
+                     tl.col = "black", 
+                     method = "number")
 ```
+
+The senior citizen variable is either 1 or 0. This must be recast as a factor before use in the model.
+
+```{r fig.align="center"}
+data$SeniorCitizen %>% 
+  table %>% 
+  barplot(col = "steelblue", main = "Senior Citizen")
+```
+
+The data is split into a training and testing set, stratified sampling is used on the imbalanced phone service variable.
 
 ```{r}
 data_split <- initial_split(data, prop = 3/4, strata = PhoneService)
 data_train <- training(data_split)
 data_test <- testing(data_split)
-
-data_cv <- rsample::vfold_cv(data_train)
 ```
-
+ 
+The recipe converts the senior citizen variable to a yes/no factor before dummy encoding all factors. Very little preprocessing is required for this dataset. 
+ 
 ```{r}
-lr_recipe <- recipe(Churn ~ ., data_train) %>% 
-  step_dummy(all_nominal(), -all_outcomes()) %>% 
-  step_nzv(all_numeric())
+lr_recipe <- recipe(Churn ~ ., data_train)  %>% 
+  step_num2factor(SeniorCitizen, 
+                  transform = function(x){return(x + 1)},
+                  levels = c("No", "Yes"), 
+                  ordered = F) %>% 
+  step_dummy(all_nominal(), -all_outcomes())
+
 ```
+ 
+A logistic regression model is selected from the glm library.  
 
 ```{r}
 lr_model <- 
   logistic_reg(mode = "classification") %>% 
   set_engine("glm")
 ```
-
+ 
+The workflow object ties the entire process together.
+ 
 ```{r}
 lr_wf <- 
-  workflow() %>% 
-  add_model(lr_model) %>% 
-  add_recipe(lr_recipe)
+ workflow() %>% 
+ add_model(lr_model) %>% 
+ add_recipe(lr_recipe)
 ```
+ 
+The training data is fit to create the model and coefficients are returned.
+ 
+```{r}
+(lr_wf_fit <- 
+  lr_wf %>% 
+  fit(data_train))
+```
+ 
+Using the model, churn is estimated from the test data. Here, the actual and predicted columns are bound for further analysis.
+ 
+```{r warning=FALSE}
+pred <- 
+  predict(lr_wf_fit, data_test) %>% 
+  bind_cols(., "truth" = data_test$Churn)
+  
+pred %>% 
+  DT::datatable(class = 'cell-border stripe',
+                rownames = FALSE,
+                colnames = c("Prediction", "Truth"),
+                options = list(dom = 'tp', 
+                               pageLength = 10,
+                               autoWidth = TRUE,
+                               columnDefs = list(list(className = "dt-center", targets = 0:1),
+                                                 list(width = '200px', targets = "_all"))))
+```
+A confusion matrix is an intuitive way to display the results. It allows one to determine the number of true/false positives/negatives.
 
-```{r message=FALSE}
-lr_fit_cv <- fit_resamples(lr_wf, resamples = data_cv)
+```{r fig.align="center"}
+pred %>% 
+  conf_mat(truth, .pred_class) %>% 
+  pluck(1) %>% 
+  as_tibble() %>% 
+  ggplot(data = ., aes(Prediction, Truth, alpha = n)) +
+    geom_tile(show.legend = F) +
+    geom_text(aes(label = n), colour = "white", alpha = 1, size = 8) +
+    theme_minimal() +
+    theme(panel.grid.major = element_blank()) +
+    scale_x_discrete(expand = c(0,0)) +
+    scale_y_discrete(expand = c(0,0))
 ```
+   
+The metrics function once again returns the model performance. As no custom metrics were requested, the defaults are returned; accuracy and Cohen's kappa. More detail on these metrics can be found on the [model performance](./model_performance.html) page. 
 
 ```{r}
-collect_metrics(lr_fit_cv)
+pred %>% 
+  metrics(truth, .pred_class)
 ```
+Clearly, this model is not perfect. There are far too many false negatives! More complex models will be introduced in a later script.
 
+## Meta
 
+```{r}
+sessionInfo()
+```
 
