@@ -11,9 +11,9 @@
 
 <meta name="author" content="Adam Caffrey" />
 
-<meta name="date" content="2021-06-01" />
+<meta name="date" content="2021-07-01" />
 
-<title>SQL Home</title>
+<title>GROUP BY</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -386,35 +386,65 @@ summary {
 
 
 
-<h1 class="title toc-ignore">SQL Home</h1>
+<h1 class="title toc-ignore">GROUP BY</h1>
 <h4 class="author">Adam Caffrey</h4>
-<h4 class="date">06/01/2021</h4>
+<h4 class="date">07/01/2021</h4>
 
 </div>
 
 
-<p>This page aims to validate my proficiency my mySQL. Code will be executed using the <strong><a href="https://github.com/ggrothendieck/sqldf#Overview">sqldf</a></strong> library.</p>
-<div id="basic-sql" class="section level2">
-<h2>Basic SQL</h2>
-<ol style="list-style-type: decimal">
-<li><a href="./basic_1.html">SELECT, FROM and LIMIT</a><br />
-</li>
-<li><a href="./basic_2.html">SUM, AVERAGE, COUNT, MIN and MAX</a><br />
-</li>
-<li><a href="./basic_3.html">ORDER BY, DISTINCT and WHERE</a><br />
-</li>
-<li><a href="./basic_4.html">BETWEEN, IN and aliases</a><br />
-</li>
-<li><a href="./basic_5.html">LIKE and NOT NULL</a><br />
-</li>
-<li><a href="./basic_6.html">GROUP BY</a><br />
-</li>
-<li><a href="./basic_7.html">JOIN</a></li>
-</ol>
-</div>
-<div id="adanced-sql" class="section level2">
-<h2>Adanced SQL</h2>
-</div>
+<p>This demo uses both the <strong>iris</strong> and <strong>dplyr::starwars</strong> datasets. The startwars dataset has list columns removed.</p>
+<p>The GROUP BY statement allows data to be aggregated in subsets.</p>
+<p><strong>Example:</strong> What is the average petal length of each iris species?</p>
+<pre class="r"><code>sqldf(&quot;
+  SELECT Species, AVG(`Petal.Length`) AS average_petal_length
+  FROM iris
+  GROUP BY Species;
+&quot;)</code></pre>
+<pre><code>##      Species average_petal_length
+## 1     setosa                1.462
+## 2 versicolor                4.260
+## 3  virginica                5.552</code></pre>
+<p><strong>Example:</strong> For the virginica and setosa species what is the median sepal length? List the longest first.</p>
+<pre class="r"><code>sqldf(&quot;
+  SELECT MEDIAN(`Sepal.Width`) AS mean_sepal_width, Species FROM iris
+  WHERE Species IN (&#39;virginica&#39;,&#39;setosa&#39;)
+  GROUP BY Species 
+  ORDER BY mean_sepal_width DESC
+&quot;)</code></pre>
+<pre><code>##   mean_sepal_width   Species
+## 1              3.4    setosa
+## 2              3.0 virginica</code></pre>
+<p><strong>Example:</strong> From the star wars dataset, what is the average character height from each homeworld? List the 7 with the shortest average.</p>
+<pre class="r"><code>sqldf(&quot;
+  SELECT AVG(height) AS average_height, homeworld FROM sw  
+  WHERE homeworld NOT NULL AND
+  height NOT NULL
+  GROUP BY homeworld
+  ORDER BY average_height ASC
+  LIMIT 7
+&quot;)</code></pre>
+<pre><code>##   average_height   homeworld
+## 1             79 Aleen Minor
+## 2             88       Endor
+## 3             94     Vulpter
+## 4            112   Malastare
+## 5            122     Troiken
+## 6            137    Toydaria
+## 7            150   Chandrila</code></pre>
+<p><strong>Example:</strong> What is the maximum height from species from each homeworld? List the top 3</p>
+<pre class="r"><code>sqldf(&quot;
+  SELECT MAX(height) AS max_height, homeworld FROM sw
+  WHERE homeworld NOT NULL AND
+  height NOT NULL
+  GROUP BY homeworld
+  ORDER BY max_height DESC
+  LIMIT 3
+&quot;)</code></pre>
+<pre><code>##   max_height homeworld
+## 1        264   Quermia
+## 2        234  Kashyyyk
+## 3        229    Kamino</code></pre>
 
 
 

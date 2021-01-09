@@ -16,6 +16,10 @@ This page aims to validate my proficiency my mySQL. Code will be executed using 
 1. [SELECT, FROM and LIMIT](./basic_1.html)   
 2. [SUM, AVERAGE, COUNT, MIN and MAX](./basic_2.html)   
 3. [ORDER BY, DISTINCT and WHERE](./basic_3.html)     
+4. [BETWEEN, IN and aliases](./basic_4.html)    
+5. [LIKE and NOT NULL](./basic_5.html)   
+6. [GROUP BY](./basic_6.html)   
+7. [JOIN](./basic_7.html)   
 
 ## Adanced SQL
 

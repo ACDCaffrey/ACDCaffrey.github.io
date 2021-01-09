@@ -1,0 +1,54 @@
+---
+title: "BETWEEN, IN and aliases"
+author: "Adam Caffrey"
+date: "07/01/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(sqldf)
+```
+
+This demo will use the **iris** dataset.
+
+BETWEEN and (NOT) IN are also filter functions. They are used in a similar manner to WHERE. Note: the BETWEEN function is inclusive, end values are included!
+
+Here are some examples
+
+**Example:** How many entries have petal lengths between 5 and 6?
+```{r}
+sqldf("
+  SELECT COUNT(`Petal.Length`) FROM iris
+  WHERE `Petal.Length` BETWEEN 5 AND 6;
+")
+```
+
+**Example:** How many setosa species iris' have petal lengths between 1 and 1.4?
+```{r}
+sqldf("
+  SELECT COUNT(Species) FROM iris
+  WHERE (`Petal.Length` BETWEEN 1 AND 1.4)
+  AND (Species = 'setosa');
+")
+```
+**Example:** Which entries have sepal widths of 3, 4 or 5? Write entries from longest to shortest based on the petal width.
+```{r}
+sqldf("
+  SELECT * FROM iris
+  WHERE `Sepal.Width` IN (3,4,5)
+  ORDER BY `Petal.Width` DESC;
+")
+```
+Finally, alises can be set to simplify queries and update column names using the AS keyword.
+
+**Example:** Using the alias "flower" for the dataset return the species and petal widths for entries of the virginica and setosa species with petal lengths between 1.5 and 2, 5.5 and 6. Name the columns type and dimension.
+```{r}
+sqldf("
+  SELECT Species AS type, `Petal.Width` AS dimension
+  FROM iris
+  WHERE (`Petal.Length` BETWEEN 1.5 AND 2)
+  OR (`Petal.Length` BETWEEN 5.5 AND 6)
+  AND (type IN ('setosa', 'virginica'));
+")
+```

@@ -1,0 +1,90 @@
+---
+title: "JOIN"
+author: "Adam Caffrey"
+date: "07/01/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+library(readr)
+library(sqldf)
+library(kableExtra)
+
+```
+
+This demo will use two custom datasets; **df1** and **df2**:
+
+## data
+```{r echo = FALSE}
+df1 <- data.frame("id" = 1:8,
+                  "a" = c("name 1", "name 2", "name 3", "name 4", "name 5", "name 6", "name 7", "name 8"))
+df2 <- data.frame("id" = 1:6,
+                  "a" = c("cat", "dog", "piano", "bear", "yakult", "air fryer"))
+
+```
+
+```{r}
+df1 %>% 
+  kable() %>% 
+  kable_styling(full_width = F)
+
+df2 %>% 
+  kable() %>% 
+  kable_styling(full_width = F)
+```
+
+Unfortunately, not all joins are available when using **sqldf**, those which are will be shown here. The 4 main joins are:   
+1. INNER JOIN   
+2. OUTER JOIN   
+3. LEFT JOIN   
+4. RIGHT JOIN   
+
+## LEFT JOIN
+
+The left join takes all the data in the first (left) dataset and any matching values in the right (second) table
+
+```{r}
+sqldf("
+  SELECT df1.a, df2.a
+  FROM df1
+  LEFT JOIN df2 ON df1.id=df2.id;
+")
+```
+
+## RIGHT JOIN
+
+The RIGHT JOIN takes all the data from the second (right) dataset and any matching entries from the left (first). **Not currently supported by sqldf**.
+
+```{r, eval = FALSE}
+sqldf("
+  SELECT df1.name, df2.name 
+  FROM df1
+  RIGHT JOIN df2.id=df1.id
+")
+```
+
+## INNER JOIN
+
+The INNER JOIN keeps any data which is in both tables.
+
+```{r}
+sqldf("
+  SELECT df1.a, df2.a
+  FROM df1
+  INNER JOIN df2 ON df1.id=df2.id
+")
+```
+
+## FULL OUTER JOIN
+
+FULL OUTER JOIN keeps all data, in both tables, whether they match or not. **Not currently supported by sqldf**.
+
+```{r, eval = FALSE}
+sqldf("
+  SELECT df1.name, df2.name 
+  FROM df1
+  OUTER JOIN df2.id=df1.id
+")
+```

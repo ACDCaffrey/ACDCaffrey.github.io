@@ -1,0 +1,68 @@
+---
+title: "LIKE and NOT NULL"
+author: "Adam Caffrey"
+date: "07/01/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(sqldf)
+library(kableExtra)
+library(dplyr)
+sw <- starwars[,1:11]
+```
+
+This demo will use the **starwars** dataset from the **[dplyr](https://dplyr.tidyverse.org/)** library with list columns dropped, renamed to sw.
+
+regex is a powerful tool in SQL. It is one of the more common uses day-to-day. The following special characters are particularly important:
+
+```{r, echo = FALSE}
+col1 <- c("%", "_", "[]", "^", "-")
+col2 <- c("zero or multiple characters", 
+          "single character",
+          "any single character within brackets",
+          "any character not in brackets",
+          "range of characters")
+data.frame("Character" = col1, 
+           "Definition" = col2) %>% 
+  kable() %>% 
+  kable_styling(full_width = F)
+
+```
+
+The best way to understand how this works is with some practical(ish) examples.
+
+**Example 1:** How many characters have eye colours beginning with a b?
+```{r}
+sqldf("
+  SELECT COUNT(name) FROM sw
+  WHERE eye_color LIKE 'b%';
+")
+```
+**Example 2:** List all the planets containing "oo"
+```{r}
+sqldf("
+  SELECT DISTINCT homeworld FROM sw
+  WHERE homeworld LIKE '%oo%';
+")
+```
+
+The following example uses NOT NULL to filter rows containing NA.
+
+**Example 3:** Who is the youngest character from any planet beginning with N?
+```{r}
+sqldf("
+  SELECT name, homeworld, birth_year FROM sw
+  WHERE homeworld LIKE 'N%'
+  AND birth_year NOT NULL
+  ORDER BY birth_year ASC
+  LIMIT 1;
+")
+```
+**Example 5:** What is the average height of characters whose names don't end in an "a"
+```{r}
+sqldf("SELECT AVG(height) AS average_height FROM sw
+      WHERE name NOT LIKE '%a'")
+```
+

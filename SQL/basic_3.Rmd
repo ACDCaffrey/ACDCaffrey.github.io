@@ -54,7 +54,7 @@ sqldf("
 ")
 ```
 
-Finally, where allows you to set conditionals. The syntax for this are as follows:   
+Finally, WHERE allows you to set conditionals. The syntax for this are as follows:   
 ```{r, echo=FALSE}
 col1 <- c("=", ">", "<", ">=", "<=", "<>")
 col2 <- c("Equal", "Greater than", "Less than", "Greater than or equal to", "Less than or equal to", "Not equal to")

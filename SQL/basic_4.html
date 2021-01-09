@@ -11,9 +11,9 @@
 
 <meta name="author" content="Adam Caffrey" />
 
-<meta name="date" content="2021-06-01" />
+<meta name="date" content="2021-07-01" />
 
-<title>SQL Home</title>
+<title>BETWEEN, IN and aliases</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -386,35 +386,120 @@ summary {
 
 
 
-<h1 class="title toc-ignore">SQL Home</h1>
+<h1 class="title toc-ignore">BETWEEN, IN and aliases</h1>
 <h4 class="author">Adam Caffrey</h4>
-<h4 class="date">06/01/2021</h4>
+<h4 class="date">07/01/2021</h4>
 
 </div>
 
 
-<p>This page aims to validate my proficiency my mySQL. Code will be executed using the <strong><a href="https://github.com/ggrothendieck/sqldf#Overview">sqldf</a></strong> library.</p>
-<div id="basic-sql" class="section level2">
-<h2>Basic SQL</h2>
-<ol style="list-style-type: decimal">
-<li><a href="./basic_1.html">SELECT, FROM and LIMIT</a><br />
-</li>
-<li><a href="./basic_2.html">SUM, AVERAGE, COUNT, MIN and MAX</a><br />
-</li>
-<li><a href="./basic_3.html">ORDER BY, DISTINCT and WHERE</a><br />
-</li>
-<li><a href="./basic_4.html">BETWEEN, IN and aliases</a><br />
-</li>
-<li><a href="./basic_5.html">LIKE and NOT NULL</a><br />
-</li>
-<li><a href="./basic_6.html">GROUP BY</a><br />
-</li>
-<li><a href="./basic_7.html">JOIN</a></li>
-</ol>
-</div>
-<div id="adanced-sql" class="section level2">
-<h2>Adanced SQL</h2>
-</div>
+<p>This demo will use the <strong>iris</strong> dataset.</p>
+<p>BETWEEN and (NOT) IN are also filter functions. They are used in a similar manner to WHERE. Note: the BETWEEN function is inclusive, end values are included!</p>
+<p>Here are some examples</p>
+<p><strong>Example:</strong> How many entries have petal lengths between 5 and 6?</p>
+<pre class="r"><code>sqldf(&quot;
+  SELECT COUNT(`Petal.Length`) FROM iris
+  WHERE `Petal.Length` BETWEEN 5 AND 6;
+&quot;)</code></pre>
+<pre><code>##   COUNT(`Petal.Length`)
+## 1                    37</code></pre>
+<p><strong>Example:</strong> How many setosa species iris’ have petal lengths between 1 and 1.4?</p>
+<pre class="r"><code>sqldf(&quot;
+  SELECT COUNT(Species) FROM iris
+  WHERE (`Petal.Length` BETWEEN 1 AND 1.4)
+  AND (Species = &#39;setosa&#39;);
+&quot;)</code></pre>
+<pre><code>##   COUNT(Species)
+## 1             24</code></pre>
+<p><strong>Example:</strong> Which entries have sepal widths of 3, 4 or 5? Write entries from longest to shortest based on the petal width.</p>
+<pre class="r"><code>sqldf(&quot;
+  SELECT * FROM iris
+  WHERE `Sepal.Width` IN (3,4,5)
+  ORDER BY `Petal.Width` DESC;
+&quot;)</code></pre>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1           7.7           3          6.1         2.3  virginica
+## 2           6.7           3          5.2         2.3  virginica
+## 3           6.5           3          5.8         2.2  virginica
+## 4           7.1           3          5.9         2.1  virginica
+## 5           7.6           3          6.6         2.1  virginica
+## 6           6.8           3          5.5         2.1  virginica
+## 7           6.5           3          5.2         2.0  virginica
+## 8           6.5           3          5.5         1.8  virginica
+## 9           6.1           3          4.9         1.8  virginica
+## 10          6.0           3          4.8         1.8  virginica
+## 11          5.9           3          5.1         1.8  virginica
+## 12          6.7           3          5.0         1.7 versicolor
+## 13          7.2           3          5.8         1.6  virginica
+## 14          5.9           3          4.2         1.5 versicolor
+## 15          5.6           3          4.5         1.5 versicolor
+## 16          5.4           3          4.5         1.5 versicolor
+## 17          6.6           3          4.4         1.4 versicolor
+## 18          6.1           3          4.6         1.4 versicolor
+## 19          5.6           3          4.1         1.3 versicolor
+## 20          5.7           3          4.2         1.2 versicolor
+## 21          4.8           3          1.4         0.3     setosa
+## 22          4.9           3          1.4         0.2     setosa
+## 23          5.8           4          1.2         0.2     setosa
+## 24          5.0           3          1.6         0.2     setosa
+## 25          4.4           3          1.3         0.2     setosa
+## 26          4.8           3          1.4         0.1     setosa
+## 27          4.3           3          1.1         0.1     setosa</code></pre>
+<p>Finally, alises can be set to simplify queries and update column names using the AS keyword.</p>
+<p><strong>Example:</strong> Using the alias “flower” for the dataset return the species and petal widths for entries of the virginica and setosa species with petal lengths between 1.5 and 2, 5.5 and 6. Name the columns type and dimension.</p>
+<pre class="r"><code>sqldf(&quot;
+  SELECT Species AS type, `Petal.Width` AS dimension
+  FROM iris
+  WHERE (`Petal.Length` BETWEEN 1.5 AND 2)
+  OR (`Petal.Length` BETWEEN 5.5 AND 6)
+  AND (type IN (&#39;setosa&#39;, &#39;virginica&#39;));
+&quot;)</code></pre>
+<pre><code>##         type dimension
+## 1     setosa       0.2
+## 2     setosa       0.4
+## 3     setosa       0.2
+## 4     setosa       0.1
+## 5     setosa       0.2
+## 6     setosa       0.2
+## 7     setosa       0.4
+## 8     setosa       0.3
+## 9     setosa       0.3
+## 10    setosa       0.2
+## 11    setosa       0.4
+## 12    setosa       0.5
+## 13    setosa       0.2
+## 14    setosa       0.2
+## 15    setosa       0.4
+## 16    setosa       0.2
+## 17    setosa       0.2
+## 18    setosa       0.2
+## 19    setosa       0.4
+## 20    setosa       0.1
+## 21    setosa       0.2
+## 22    setosa       0.2
+## 23    setosa       0.6
+## 24    setosa       0.4
+## 25    setosa       0.2
+## 26    setosa       0.2
+## 27 virginica       2.5
+## 28 virginica       2.1
+## 29 virginica       1.8
+## 30 virginica       2.2
+## 31 virginica       1.8
+## 32 virginica       2.1
+## 33 virginica       1.8
+## 34 virginica       2.3
+## 35 virginica       2.1
+## 36 virginica       1.8
+## 37 virginica       2.1
+## 38 virginica       1.6
+## 39 virginica       2.2
+## 40 virginica       1.4
+## 41 virginica       2.4
+## 42 virginica       1.8
+## 43 virginica       2.4
+## 44 virginica       2.3
+## 45 virginica       2.5</code></pre>
 
 
 

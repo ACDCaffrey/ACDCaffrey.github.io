@@ -1,0 +1,63 @@
+---
+title: "GROUP BY"
+author: "Adam Caffrey"
+date: "07/01/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(sqldf)
+library(dplyr)
+sw <- starwars[,1:11]
+```
+
+This demo uses both the **iris** and **dplyr::starwars** datasets. The startwars dataset has list columns removed.
+
+The GROUP BY statement allows data to be aggregated in subsets. 
+
+**Example:** What is the average petal length of each iris species?
+
+```{r}
+sqldf("
+  SELECT Species, AVG(`Petal.Length`) AS average_petal_length
+  FROM iris
+  GROUP BY Species;
+")
+
+```
+
+**Example:** For the virginica and setosa species what is the median sepal length? List the longest first.
+```{r}
+sqldf("
+  SELECT MEDIAN(`Sepal.Width`) AS mean_sepal_width, Species FROM iris
+  WHERE Species IN ('virginica','setosa')
+  GROUP BY Species 
+  ORDER BY mean_sepal_width DESC
+")
+```
+**Example:** From the star wars dataset, what is the average character height from each homeworld? List the 7 with the shortest average.
+```{r}
+sqldf("
+  SELECT AVG(height) AS average_height, homeworld FROM sw  
+  WHERE homeworld NOT NULL AND
+  height NOT NULL
+  GROUP BY homeworld
+  ORDER BY average_height ASC
+  LIMIT 7
+")
+```
+
+**Example:** What is the maximum height from species from each homeworld? List the top 3
+```{r}
+sqldf("
+  SELECT MAX(height) AS max_height, homeworld FROM sw
+  WHERE homeworld NOT NULL AND
+  height NOT NULL
+  GROUP BY homeworld
+  ORDER BY max_height DESC
+  LIMIT 3
+")
+```
+
+
