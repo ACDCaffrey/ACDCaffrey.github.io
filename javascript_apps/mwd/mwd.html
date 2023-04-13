@@ -1,0 +1,123 @@
+<html lang="en-GB">
+
+ <head>
+    <title>MWD</title>
+    <link rel="stylesheet" type="text/css" href="./mwd_stylesheet.css">
+    <meta charset="UTF-8">
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <meta name="description" content="MWD App">
+    <meta name="keywords" content="MWD">
+    <meta name="author" content="Adam Caffrey">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+
+  <div class="main_wrapper">
+    <h1 style="text-align:center">Moving Window Deconvolution App</h1>
+
+  <div class="text_box">
+                    <p>
+                        The aim of the MWD algorithm is to transform the digitised preamplifier signal into a more
+                        suitable shape for determining energy. The shape of the transformed signal is a trapezoid whose
+                        duration is much shorter than the exponential decay characteristic of the preamplifier signal,
+                        which reduces dead-time and pile up.
+                    </p>
+                    <p>
+                        You can think of this method as a digital equivalent of the traditional analogue Gaussian shaper
+                        that is obtained using combinations of CR and RC circuits, however the MWD algorithm offers
+                        a slightly better signal-to-noise ratio than the Gaussian shaper.
+                    </p>
+                </div>
+
+                <div class="text_box">
+                    <p>
+                        The MWD algorithm can be considered a three-stage process:
+                    </p>
+                    <ol class="text_box" style="font-weight:100;">
+                        <li>
+                            Transform the digitised preamplifier signal into a step function by removing the exponential
+                            decay.
+                        </li>
+                        <li>
+                            Differentiate the output of stage 1 to produce a square pulse.
+                        </li>
+                        <li>
+                            Run a moving average over the output of stage 2 to smooth out noise and produce a
+                            trapezoidal shape.
+                        </li>
+                    </ol>
+                    <p>
+                        The shape of the trapezoid is determined by a set of parameters optimised by the user for
+                        specific detectors and applications. These include the <b>risetime</b>, <b>flat top</b>, <b>decay time</b>,
+                        <b>average window time</b>, <b>CFD threshold</b>, and <b>delay time</b>.
+                    </p>
+                    <p>
+                        Select various combinations of the parameters using the dropdowns and click the 'stage x'
+                        buttons to see how the signal looks at various points through the MWD algorithm. Hit the
+                        'calculate energy' button to try to extract the energy of the pulse.
+                    </p>
+                    <p>
+                        A tooltip appears under the plot with information on each stages.
+                    </p>
+                </div>
+
+  <div class="stageinputs">
+
+    <span class="stageinput">
+      <label class="stageinputtext" for="risetime">Rise Time:</label>
+      <select id="selectrisetime"></select>
+    </span>
+
+    <span class="stageinput">
+      <label class="stageinputtext" for="risetime">Flat Top:</label>
+      <select id="selectflattop"></select>
+    </span>
+
+    <span class="stageinput">
+      <label class="stageinputtext" for="decay">Decay Time:</label>
+      <select id="selectdecay"></select>
+    </span>
+
+    <span class="stageinput">
+      <label class="stageinputtext" for="avwindow">Av Window Time:</label>
+      <select id="selectavwindow"></select>
+    </span>
+
+    <span class="stageinput">
+      <label class="stageinputtext" for="threshold">CFD Threshold:</label>
+      <select id="selectthreshold"></select>
+    </span>
+
+    <span class="stageinput">
+      <label class="stageinputtext" for="delay">Delay:</label>
+      <select id="selectdelay"></select>
+    </span>
+  </div>
+
+  <br/>
+
+  <div id="stagebuttons">
+    <input id="stage1mwdbutton" class="stagebutton" type="button" value="stage 1"/>
+    <input id="stage2mwdbutton" class="stagebutton" type="button" value="stage 2"/>
+    <input id="stage3mwdbutton" class="stagebutton" type="button" value="stage 3"/>
+  </div>
+  <div id="stagebuttons">
+    <input id="stagereset" class="stagebutton" type="button" value="reset"/>
+    <input id="energybutton" class="stagebutton" type="button" value="calculate energy"/>
+  </div>
+
+  <br/>
+
+  <div id="tracemwd2"></div>
+
+  <div id="mwdinfo"></div>
+
+  <div class="buffer"></div>
+
+
+  <div class="buffer"></div>
+  <script src="./mwd_script.js"></script>
+
+  </body>
+</html>
