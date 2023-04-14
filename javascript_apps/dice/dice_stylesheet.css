@@ -1,0 +1,646 @@
+#main_wrapper{
+  width:90%;
+  margin:auto;
+  font-family: sans-serif;
+}
+
+#roll_text{
+    font-family: sans-serif;
+}
+
+#chartdiv{
+  height:500px;
+  width:100%;
+}
+
+#intro_text{
+  font-size: 20px;
+}
+
+.buffer{
+  height: 30px;
+}
+
+#roll_button{
+  padding:10px 14px;
+}
+
+#roll_input{
+  padding:8px 12px;
+  font-size: 16px;
+}
+
+#home_button{
+  position: fixed;
+  padding: 16px;
+  right: 3%;
+  top: 2%;
+}
+
+#roll_number{
+  font-size: 16px;
+}
+
+
+body {
+  margin: 0;
+}
+
+.main_wrapper{
+  width:80%;
+  margin:auto;
+  font-family: sans-serif;
+}
+
+.text_box{
+  font-size: 16px;
+  text-align:left;
+}
+
+.bullet_points_in_text{
+  font-size: 20px;
+  text-align:left;
+  line-height: 160%;
+  font-weight: 100;
+  font-family: sans-serif;
+}
+
+.text_box.center {
+  text-align: center;
+}
+
+h1{
+  font-size:30px;
+}
+
+h2{
+  font-size:22px;
+}
+
+.buffer{
+  height: 90px;
+}
+
+#main_logo{
+  width:20%;
+}
+
+.big_text_box{
+  width:100%;
+  resize:vertical;
+  min-height:10px;
+  font-family: sans-serif;
+  font-size: 18px;
+}
+
+.svg-container {
+  display: inline-block;
+  position: relative;
+  width: auto;
+  vertical-align: top;
+  overflow: hidden;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.svg-content {
+  display: inline-block;
+  position: relative;
+}
+
+.homebutton{
+  border-radius: 4px;
+  border: 0px;
+  width: 99px;
+  height: 30px;
+  margin-left:2%;
+  margin-top:2%;
+  background-color: #ddd;
+}
+
+.nextbutton{
+  border-radius: 4px;
+  border: 0px;
+  width: 99px;
+  height: 30px;
+  background-color: #ddd;
+}
+
+.prevbutton{
+  border-radius: 4px;
+  border: 0px;
+  width: 99px;
+  height: 30px;
+  background-color: #ddd;
+}
+
+.homebutton:hover{
+  background-color: steelblue;
+  color:white;
+}
+
+.nextbutton:hover{
+  background-color: steelblue;
+  color:white;
+}
+
+.prevbutton:hover{
+  background-color: steelblue;
+  color:white;
+}
+
+.navbuttons{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  position:relative;
+}
+
+.null {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.selectquiz{
+  text-align: center;
+  width:80%;
+  margin:auto;
+}
+
+.quizselectoption{
+  width:90%;
+  margin-bottom:0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 0px;
+  border-width: 1px;
+  transition-duration: 0.2s;
+}
+
+.quizselectoption:focus{
+  border-radius: 0px;
+}
+
+.selectquizsubmit{
+  position:absolute;
+  left:0;
+  width:10%;
+  height:50px;
+  border-radius:0px;
+  background-color:white;
+  border-color:black;
+  border-width: 1px;
+  text-align: center;
+}
+
+.selectquizsubmit:focus{
+  border-radius: 0px;
+}
+
+.equation{
+  text-align: center;
+}
+
+/* .MathJax{
+  font-size: 14px !important;
+} */
+
+.quizanswers{
+  margin: auto;
+  width:90%;
+  position:relative;
+  min-height: 80px;
+}
+
+#quizfeedback1{
+  position:absolute;
+  right:0;
+  width:90%;
+  height:50px;
+  border-radius:0px;
+  border-color:black;
+  border-width: 1px;
+  resize:none;
+  padding:10px;
+  font-family: sans-serif;
+}
+
+#seminar{
+  width: 100%;
+  height:250px;
+  border-color:black;
+  background:grey;
+  min-height:250px;
+}
+
+#emailform{
+  height:300px;
+  width:100%;
+  background-color:grey;
+  border-color:black;
+}
+
+#pulseplot{
+  width:60%;
+}
+
+#interpplot{
+  width:60%;
+}
+
+#tracemwd{
+  width:70%;
+}
+
+#tracemwd2{
+  width:80%;
+}
+
+#stage1mwdbutton{
+
+}
+
+#stagebuttons{
+  text-align: center;
+  margin: auto;
+  display: flex;
+  justify-content: center; 
+/*  space-between;*/
+  flex-wrap: wrap;
+}
+
+.stagebutton{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff; /* afb5c6 */
+  padding: 7px;
+  color: #222734;
+  border-radius: 4px;
+  border: 1px solid #afb5c6;
+  margin: 8px;
+  flex-basis: calc(20% - 80px);
+}
+
+.stagebutton:hover{
+  color:white;
+  background-color:steelblue;
+  cursor: pointer;
+}
+
+.stageinputs{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 1000px;
+
+  font-size: 15px;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.stageinputs2{
+  font-size: 15px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.stageinput{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4px;
+}
+
+.stageinputtext{
+  font-size:15px;
+}
+
+#risetimebutton{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff; /* afb5c6 */
+  padding: 7 10 7 10;
+  color: #222734;
+  border-radius: 4px;
+  border: 1px solid #afb5c6;
+  margin-left: 1%;
+}
+
+
+#risetimebutton:hover{
+  background-color: steelblue;
+  color: white;
+}
+
+#energybutton{
+
+}
+
+.photos{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 40%;
+}
+
+textarea.user_input, input.user_input {
+  border: none;
+  color:#738bd8;
+  font-size: 16px;
+  outline: none;
+  font-weight: 100;
+  padding: 2px 8px;
+}
+
+textarea.user_input {
+  border: 1px dashed #738bd8;
+  margin: 6px 0;
+  min-height: 100px;
+}
+
+input.user_input {
+  text-align: center;
+  border-bottom: 1px dashed #738bd8;
+}
+
+p {
+  font-weight: 100;
+  line-height: 160%;
+}
+
+/* override the <sup/> styling to fix line height issues */
+sup {
+  vertical-align: top;
+  position: relative;
+  top: -0.6em;
+  font-size: 0.6em;
+}
+
+.note{
+  border: 1px solid;
+  border-radius: 4px;
+  background-color:#eee;
+  border-color:black;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+}
+
+#exp1_plot{
+  width:80%;
+}
+
+#exp1_plot_legend{
+  width:80%;
+}
+
+#make_exp1_plot_button{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff; /* afb5c6 */
+  padding: 7 10 7 10;
+  color: #222734;
+  border-radius: 4px;
+  border: 1px solid #afb5c6;
+  margin-left: 1%;
+}
+
+
+#make_exp1_plot_button:hover{
+  background-color: steelblue;
+  color: white;
+}
+
+#risetimebutton3{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff; /* afb5c6 */
+  padding: 7 10 7 10;
+  color: #222734;
+  border-radius: 4px;
+  border: 1px solid #afb5c6;
+  margin-left: 2%;
+}
+
+#risetimebutton3:hover{
+  background-color: steelblue;
+  color: white;
+}
+
+#noisebutton{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff; /* afb5c6 */
+  padding: 7 10 7 10;
+  color: #222734;
+  border-radius: 4px;
+  border: 1px solid #afb5c6;
+  margin-left: 2%;
+}
+
+#noisebutton:hover{
+  background-color: steelblue;
+  color: white;
+}
+
+#noiseinput{
+  -webkit-appearance:none;
+  -moz-appearance: none;
+  border-radius: 4px;
+  border: 1px solid #afb5c6;
+  width:10%;
+}
+
+select{
+  -webkit-appearance:none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 6px 20px 6px 6px;
+  border: 1px solid #afb5c6;
+  border-radius: 4px;
+  width: 150px;
+  text-align: center;
+}
+
+.equation{
+  text-align: center;
+  font-size: 24px;
+}
+
+#comptonapp{
+  width: 100%;
+}
+
+.overlay{
+  fill: none;
+  pointer-events: all;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.tooltipbox{
+  pointer-events: none;
+  background-color: red;
+}
+
+.tooltip text{
+  font-size: 14px;
+  color: black;
+}
+
+.tooltiptext1{
+  color: black;
+  font-family: sans-serif;
+  font-size: 9px;
+}
+
+.tooltiptext2{
+  color: black;
+  font-family: sans-serif;
+  font-size: 9px;
+}
+
+.tooltiptext3{
+  color: black;
+  font-family: sans-serif;
+  font-size: 9px;
+}
+
+#comptonapptooltip{
+  width: 40%;
+  text-align: left;
+  border: 1px solid black;
+  background-color: #eee;
+}
+
+#mwdinfo{
+  border-radius: 4px;
+  margin: auto;
+  width: 50%;
+  padding: 9px;
+  text-align: center;
+  border: 1px solid white;
+  margin-bottom: 50px;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 160%;
+}
+
+#experiment2_table{
+  text-align: center;
+  font-family: sans-serif;
+  width: 80%;
+  margin: auto;
+}
+
+#shaping_time_buttons{
+  margin: 10px auto;
+  display:flex;
+  justify-content: center;
+}
+
+#shaping_time_buttons input {
+  width: 95%;
+  margin: 0 auto;
+  margin: 4px;
+  cursor: pointer;
+}
+
+.stbuttons{
+  border-radius: 4px;
+  border: 0px;
+  width: 99px;
+  height: 30px;
+  background-color: #ddd;
+}
+
+.stbuttons:hover{
+  color: white;
+  background-color:steelblue;
+}
+
+#shapingtimeanswer{
+  border-radius: 4px;
+  margin: 10px auto;
+  width: 80%;
+  padding: 9px;
+  text-align: center;
+  border: 1px solid white;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 140%;
+  background-color: #fff;
+}
+
+#scintillator_spectrum{
+  width: 100%;
+}
+
+@media (max-width: 650px){
+  .text_box{
+    font-size: 11px;
+  }
+
+  .bullet_points_in_text{
+    font-size: 11px;
+  }
+
+  h1{
+    font-size:20px;
+  }
+
+  h2{
+    font-size:16px;
+  }
+
+  select {
+    width: 75px;
+    font-size: 11px;
+  }
+
+  .selectquizsubmit{
+    font-size:5px;
+    padding:0;
+  }
+
+  #stageinputs{
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .stageinput{
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+
+  .stageinputtext{
+    font-size:10px;
+  }
+
+  .equation{
+    font-size:14px;
+  }
+  input.user_input, textarea.user_input, table {
+    font-size: 11px;
+  }
+}
