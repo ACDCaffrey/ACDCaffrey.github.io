@@ -1,0 +1,85 @@
+<html lang="en-GB">
+
+  <head>
+    <title>MWD</title>
+    <link rel="stylesheet" type="text/css" href="./inverse_stylesheet.css">
+    <meta charset="UTF-8">
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <meta name="description" content="MWD App">
+    <meta name="keywords" content="MWD">
+    <meta name="author" content="Adam Caffrey">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+
+    <div class="main_wrapper">
+      <h1 style="text-align:center">Inverse Square App</h1>
+
+      <div id="intro_text">
+
+        <p>Radiation shielding is used to reduce the harmful effects of radiation. Effectively shielding Humans from radiation allows us to exploit radioactivity as a resource. Sometimes, shielding might not be enough. Maybe it’s too heavy, or takes up too much space, or the level of radioactivity is too high. In these situations we rely on distance. It is always ideal to stay as far away from radioactivity as possible in order to maximise safety, a process which makes use of the inverse-square law.</p>
+        <p>How to use this application:</p>
+        <ul>
+          <li>Select a distance with the up/down arrows.</li>
+          <li>Click 'Start Measurement' to measure counts in the detector for 10 seconds at that distance.</li>
+          <li>Plot your point on the graph by clicking on the chart. You can use the <b>"Cursor position"</b> indicator at the top left of the chart to help with this.</li>
+          <li>Repeat the measurement at different distances to get a good idea of the trend.</li>
+          <li>Change to a log scale then alter the sliders to change the line of best fit until you think it best matches your points.</li>
+        </ul>
+
+      </div> <!--  end intro text -->
+
+      <!-- Thanks to: http://www.3quarks.com/en/SegmentDisplay/ for the 7-seg display -->
+      <div style:"margin-top:20px;">Detector counts:</div>
+      <canvas id="display" width="300" height="100" bg="red">
+        Your browser is unfortunately not supported.
+      </canvas>
+      <script type="text/javascript" src="inverse_script.js"></script>
+
+
+      <div id="controls">
+        <form id="controls">
+          <button id="toggle_log">Log scale</button>
+          <div>
+            <span>Distance: </span>
+            <input id="distance" type="number" min="1" max="20" step="1" value="1" size="6">
+            <span> cm</span>
+          </div>
+          <button id="start">Start Measurement</button>
+        </form>
+      </div> <!-- end controls -->
+      <span id="coords">Cursor position: (x.x, y.y)</span>
+      <div id="error"></div>
+      <div id="chart"></div>
+
+
+      <div id="lobf_controls_wrapper">
+
+        <div class="co">
+          <span><strong>Gradient: </strong></span>
+          <input id="slope" type="range" min="-10" max="10" value="0" step="0.1">
+          <span id="slope_value">0</span>
+        </div>
+
+        <div class="co">
+          <span><strong>Intercept: </strong></span>
+          <input id="intercept" type="range" min="000" max="10000" value="500" step="1">
+          <span id="intercept_value">7</span>
+        </div>
+
+      </div>
+
+
+      <div id="data_table"></div>
+      <script src="counter_script.js"></script>
+
+    <div class="buffer"></div>
+    </div> <!-- end main_wrapper -->
+    <script src="chart_script.js"></script>
+
+
+  </body>
+</html>
